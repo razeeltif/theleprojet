@@ -12,8 +12,8 @@ public class ClientRMI {
 		Registry registry;
 		try {
 			registry = LocateRegistry.getRegistry(port);
-			ServeurRMI srmi = (ServeurRMI) registry.lookup("serveurRMI");
-			String res = srmi.meth();
+			billetRMI srmi = (billetRMI) registry.lookup("billetRMI");
+			int res = srmi.getCode();
 			
 			System.out.println(res);
 			

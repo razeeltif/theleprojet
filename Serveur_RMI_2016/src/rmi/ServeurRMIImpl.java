@@ -5,14 +5,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ServeurRMIImpl extends UnicastRemoteObject implements ServeurRMI{
+public class ServeurRMIImpl extends UnicastRemoteObject/* implements ServeurRMI*/{
 
 	protected ServeurRMIImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
+/*
 	@Override
 	public String meth() throws RemoteException {
 		return "retour serveur rmi";
@@ -44,7 +44,7 @@ public class ServeurRMIImpl extends UnicastRemoteObject implements ServeurRMI{
 			System.err.println("Erreur RMI rebind");
 		}
 		
-		
 	}
-	
+		
+*/	
 }
