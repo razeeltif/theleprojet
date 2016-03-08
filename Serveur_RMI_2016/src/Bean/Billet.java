@@ -5,7 +5,7 @@ import Database.Base;
 public class Billet {
 
 	Integer code;
-	Boolean isAdmin;
+	Boolean isAdmin; 
 	
 	
 	public Integer getCode() {

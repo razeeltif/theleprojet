@@ -3,7 +3,7 @@ package Bean;
 public class Groupe {
 
 	String nom_groupe;
-	String description;
+	String description; 
 	
 	
 	public String getNom_groupe() {

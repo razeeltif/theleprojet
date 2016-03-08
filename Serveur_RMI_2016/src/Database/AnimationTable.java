@@ -45,7 +45,7 @@ Base maBase = new Base();
 		try {
 			String sql = 
 			 "select * from Animation where Groupe_Name like ?";
-			PreparedStatement ps = maBase.co.prepareStatement(sql);
+			PreparedStatement ps = maBase.co.prepareStatement(sql); 
 			ps.setString(1, nomGroupe); // num param
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){

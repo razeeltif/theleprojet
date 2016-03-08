@@ -10,7 +10,7 @@ public class GroupeTable {
 
 	Base maBase = new Base();
 	
-	public Groupe getGroupe(String nom_groupe){
+	public Groupe getGroupe(String nom_groupe){ 
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 

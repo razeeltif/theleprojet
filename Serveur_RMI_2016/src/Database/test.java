@@ -39,7 +39,7 @@ public class test {
 		
 
 		res_Anim = testAnim.getAnim("Belem");
-		System.out.println(res_Anim.getNom_animation());
+		System.out.println(res_Anim.getNom_animation()); 
 		
 		testAnim.deleteAnim("Belem");
 		

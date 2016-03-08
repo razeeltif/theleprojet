@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class BilletTable {
+public class BilletTable { 
 
 	Base maBase = new Base();
 	
