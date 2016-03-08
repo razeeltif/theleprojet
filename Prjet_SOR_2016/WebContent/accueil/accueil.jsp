@@ -93,10 +93,5 @@ if (request.getParameter("submit") != null) {
 
 </c:if>
 
-
-
-
-
-
 </body>
 </html>
