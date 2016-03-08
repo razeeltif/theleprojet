@@ -1,27 +1,34 @@
+<%@page import="manager.Manager"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+
+<jsp:useBean id="manager" 
+	class="manager.Manager"
+	scope="session" />  
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <link type='text/css' href='../commun_page_menu/menu.css'	rel='stylesheet' />
+
+
+
+
 
 <div id="menus">
 	<div id="main-menu">
 		<ul>
 			<li class=" first"><a href="../accueil/accueil.jsp" title="Accueil">Accueil</a><span class="spacer"></span>
-				<ul>
-					<li class="first">
-						<a href="../accueil/accueil.jsp" title="Page d'accueil">Page d'accueil</a>
-						<ul>
-							<li class="first">
-								<a href="#" title="Item 1.1.1">Item 1.1.1</a>
-							</li>
-							<li>
-								<a href="#" title="Item 1.1.2">Item 1.1.2</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</li>
+			
+			<c:if test="${manager.identifie}">
+			<li class=" first"><a href="../animation/listeAnimation.jsp" title="Accueil">Liste des animations</a><span class="spacer"></span>
+			</li>
+			</c:if>
+			
+			
 			<li class=" first"><a href="../livre/enregistrerLivre.jsp" title="Livres">Livres</a><span class="spacer"></span>
 				<ul>
 					<li class="first"><a href="../livre/enregistrerLivre.jsp" title="Enregistrer un livre">Enregistrer un livre</a>
@@ -55,6 +62,10 @@
 					<li><a href="../identification/logout.jsp" title="1">Déconnexion</a></li>
 				</ul>
 			</li>
+			<c:if test="${manager.identifie}">
+			<li class=" first"><a href="../identification/logout.jsp" title="Deconnexion">Déconnexion</a><span class="spacer"></span>
+			</li>
+			</c:if>
 		</ul>
 	</div>
 </div>
