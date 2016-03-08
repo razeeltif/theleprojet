@@ -12,10 +12,7 @@ public class Validation {
 	Hashtable <String,String> valeurs = new Hashtable<String,String>();
 	Hashtable <String,String> erreurs = new Hashtable<String,String>();
 	
-	public boolean nonVide(
-			Class c,
-			String param,
-			String val) {
+	public boolean nonVide(Class c,String param,String val) {
 		boolean res = true;
 		
 		if (val == null) {
@@ -44,13 +41,6 @@ public class Validation {
 	}
 	
 	
-	public boolean estCorrect(String val){
-		boolean res = true;
-		if (val.trim().length() != 4) {
-			res = false;
-		}
-		return res;
-	}
 	public boolean estCorrect(Class c, String param,String val) {
 		boolean res = true;
 		

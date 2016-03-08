@@ -14,17 +14,12 @@
 <h1>Liste des animations</h1>
 <%
 	
-/*	Base base = new Base();
-	base.ouvrir();
-	ArrayList <Livre>lst =
-			base.listerLivres("%");
-	base.fermer();
-	
-	out.println("<ul>");
-	for (Animation l : lst) {
-		out.println("<li>"+l.getTitre()+"</li>");
-	}
-	out.println("</ul>");*/
+/*		ArrayList <Animation>lst = manager.listerAnimation("%");
+		out.println("<ul>");
+		for (Animation l : lst) {
+			out.println("<li>"+l.getTitre()+"</li>");
+		}
+		out.println("</ul>");*/
 	
 	
 	

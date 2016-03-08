@@ -1,5 +1,65 @@
+<%@page import="obj.Animation"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<jsp:useBean id="manager" 
+	class="manager.Manager"
+	scope="session" />
+	
+<jsp:useBean id="validation" 
+	class="validation.Validation"
+	scope="request" /> 
+   
+   
+    
+    
+<%
+/*
+//création objet persistant
+//equivalent jsp:useBean
+Manager manager = (Manager)request.getSession().
+	getAttribute("manager");
+if (manager == null) {
+	// si objet persistant pas encore créé
+	manager = new Manager();
+	request.getSession().setAttribute(
+			"manager", manager);
+}
+
+*/
+
+if (request.getParameter("submit") != null) {
+	validation.nonVide(Animation.class, "nom", request.getParameter("nom"));
+	validation.nonVide(Animation.class, "description", request.getParameter("description"));
+	validation.nonVide(Animation.class, "photo", request.getParameter("photo"));
+	validation.nonVide(Animation.class, "nb_places", request.getParameter("nb_places"));
+	validation.nonVide(Animation.class, "heure", request.getParameter("heure"));
+	validation.nonVide(Animation.class, "duree", request.getParameter("duree"));
+	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
+//	validation.nonVide(Animation.class, "groupe", request.getParameter("groupe"));
+	
+	if (validation.isValide()) {
+		String ident = validation.getValeurs().get("ident");
+		String mdp = validation.getValeurs().get("mdp");
+		
+		/*ajout de l'aniamtion � la BDD 
+			manager.getServRMI().ajouterAnimation();
+		*/
+
+			return;
+		
+				
+	}
+}
+
+%>    
+    
+    
+    
+    
+    
+    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,28 +71,21 @@
 
 <h1>Ajouter une animation</h1>
 
-<form>
+<form> <!-- action="UploadServlet" method="post" enctype="multipart/form-data" -->
 	<table>
 		<tr>
 			<td>Nom : </td>
 			<td><input type="text" 
 						value= "${validation.valeurs['nom']}"
 						name="nom"/></td>
-			<td>${validation.erreurs['ident']}</td>
+			<td>${validation.erreurs['nom']}</td>
 		</tr>
 		<tr>
 			<td>Description : </td>
 			<td><input type="text" 
-						value= "${validation.valeurs['desc']}"
-						name="desc"/></td>
-			<td>${validation.erreurs['mdp']}</td>
-		</tr>
-		<tr>
-			<td>Image : </td>
-			<td><input type="text" 
-						value= "${validation.valeurs['img']}"
-						name="img"/></td>
-			<td>${validation.erreurs['img']}</td>
+						value= "${validation.valeurs['description']}"
+						name="description"/></td>
+			<td>${validation.erreurs['description']}</td>
 		</tr>
 		<tr>
 			<td>heure : </td>
@@ -51,15 +104,24 @@
 		<tr>
 			<td>nombre de places : </td>
 			<td><input type="text" 
-						value= "${validation.valeurs['nb_place']}"
-						name="nb_place"/></td>
-			<td>${validation.erreurs['nb_place']}</td>
+						value= "${validation.valeurs['nb_places']}"
+						name="nb_places"/></td>
+			<td>${validation.erreurs['nb_places']}</td>
 		</tr>
 		<tr>
 			<td>groupe : </td>
 			<td>
-				<select name="thelist">
+				<select name="thelist" >
 				<%
+				/*ArrayList<String> groupe = manager.gerServRMI().getListGroupe();
+				* Iterator itr = al.iterator();
+			      while(itr.hasNext()) {
+			         String element = itr.next();
+					out.println("<option>");
+					out.println(element);
+					out.println("</option>");
+			      }
+				*/
 				
 				for(int i = 0; i < 5; i++){
 				out.println("<option>");
@@ -78,6 +140,12 @@
 		</tr>
 		
 		<tr>
+			<td>image :</td>
+			<td><input type="file" name="${validation.valeurs['photo']}" size="35" name="photo"/>
+				<br />
+			</td>
+		</tr>
+		<tr>
 			<td>&nbsp;</td>
 			<td><input type="submit"
 				value="Valider"
@@ -85,6 +153,8 @@
 		</tr>
 	</table>
 </form>
+
+
 
 
 </body>

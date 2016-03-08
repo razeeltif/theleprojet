@@ -33,20 +33,15 @@ if (request.getParameter("submit") != null) {
 	if(validation.nonVide(Identification.class, "id", request.getParameter("id")) && 
 			validation.estEntier(Identification.class, "id", request.getParameter("id"))){
 		if(validation.estCorrect(Identification.class, "id", request.getParameter("id"))){
-		/*correspondance BDD*/
-		
-		manager.setIdentifie(true);
-		response.sendRedirect("../accueil/accueil.jsp");
-		return;
+		/*correspondance BDD, modif du manager pour les droits admins*/
+			manager.setIdentifie(true);
+			response.sendRedirect("../accueil/accueil.jsp");
+			return;
 		}
 	}
 }
 %>    
-    
-    
-    
-    
-    
+       
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

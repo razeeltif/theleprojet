@@ -3,11 +3,12 @@ package obj;
 public class Animation {
 
 	private String nom;
-	private String sdescription;
+	private String description;
 	private String photo;
 	private int nb_places;
+	private int heure;
 	private int duree;
-	private Groupe groupe;
+	private String groupe;
 	
 	
 	public String getNom() {
@@ -16,11 +17,11 @@ public class Animation {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getSdescription() {
-		return sdescription;
+	public String getDescription() {
+		return description;
 	}
-	public void setSdescription(String sdescription) {
-		this.sdescription = sdescription;
+	public void setSDscription(String ddescription) {
+		this.description = ddescription;
 	}
 	public String getPhoto() {
 		return photo;
@@ -40,11 +41,17 @@ public class Animation {
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
-	public Groupe getGroupe() {
+	public String getGroupe() {
 		return groupe;
 	}
-	public void setGroupe(Groupe groupe) {
+	public void setGroupe(String groupe) {
 		this.groupe = groupe;
+	}
+	public int getHeure() {
+		return heure;
+	}
+	public void setHeure(int heure) {
+		this.heure = heure;
 	}
 	
 	
