@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import Bean.Animation;
 import Bean.Groupe;
-
+ 
 public interface ServeurRMI extends Remote{
 
 	//méthodes concernant la table billets
@@ -30,7 +30,7 @@ public interface ServeurRMI extends Remote{
 	//méthodes concernant la table Groupe
 	public Groupe getGroupe(String nom_groupe) throws RemoteException;
 	
-	public ArrayList<Groupe> getAllGroupe(String nom_groupe) throws RemoteException;
+	public ArrayList<Groupe> getAllGroupe() throws RemoteException;
 	
 	public void addGroupe(String nom_groupe, String desc) throws RemoteException;
 

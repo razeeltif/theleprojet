@@ -1,5 +1,5 @@
 package Bean;
-
+ 
 public class Groupe {
 
 	String nom_groupe;

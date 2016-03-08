@@ -1,5 +1,5 @@
 package Bean;
-
+ 
 public class Animation {
 
 	String nom_animation;

@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import Bean.Groupe;
-
+ 
 public class GroupeTable {
 
 	Base maBase = new Base();
@@ -31,14 +31,13 @@ public class GroupeTable {
 		return groupeTmp;
 	}
 	
-	public ArrayList<Groupe> getAllGroupe(String nom_groupe){
+	public ArrayList<Groupe> getAllGroupe(){
 		ArrayList<Groupe> listRes = new ArrayList<Groupe>();
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
-			 "select * from groupe where Nom_Groupe like ?";
+			 "select * from groupe";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
-			ps.setString(1, nom_groupe); // num param
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				groupeTmp.setNom_groupe(rs.getString("Nom_Groupe"));

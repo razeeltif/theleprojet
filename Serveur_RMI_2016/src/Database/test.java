@@ -3,7 +3,7 @@ package Database;
 import java.util.ArrayList;
 
 import Bean.Animation;
-
+ 
 public class test {
 
 	public static void main(String[] args) {
@@ -52,7 +52,13 @@ public class test {
 		System.out.println(res_Anim.getNom_animation());
 		System.out.println(res_Anim.getDuree());
 		
-		testAnim.updateAnim("Belem", "duree", "120");
+		ArrayList<String> champs = new ArrayList<String>();
+		champs.add("duree");
+
+		ArrayList<String> vals = new ArrayList<String>();
+		vals.add("120");
+		
+		testAnim.updateAnim("Belem", champs, vals);
 		res_Anim = testAnim.getAnim("Belem");
 		System.out.println(res_Anim.getNom_animation());
 		System.out.println(res_Anim.getDuree());

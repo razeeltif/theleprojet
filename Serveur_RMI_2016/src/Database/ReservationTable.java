@@ -1,7 +1,7 @@
 package Database;
 
 import java.sql.PreparedStatement;
-
+ 
 public class ReservationTable {
 
 	Base maBase = new Base();
