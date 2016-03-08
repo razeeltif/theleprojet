@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 
 public class ReservationTable {
 
-	Base maBase = new Base(); 
+	Base maBase = new Base();
 	
 	public void addResa(int code_Billet, String nom_Anim, int time){
 		maBase.ouvrir();

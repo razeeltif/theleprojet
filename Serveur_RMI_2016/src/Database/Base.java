@@ -8,7 +8,7 @@ public class Base {
 
 	String url = "jdbc:mysql://localhost/brest2016";
 	String user = "root";
-	String passwd = ""; 
+	String passwd = "";
 	
 	Connection co = null;
 	

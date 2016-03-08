@@ -8,7 +8,7 @@ public class Animation {
 	int duree;
 	int nb_Places;
 	int nb_places_Restantes;
-	String groupe_name; 
+	String groupe_name;
 	
 	
 	
