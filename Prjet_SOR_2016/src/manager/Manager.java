@@ -6,9 +6,11 @@ public class Manager {
 	// d'un objet persistant
 	
 	boolean identifie = true;
-	boolean admin = false;
+	boolean admin = true;
 	int num = -1;
-
+	//ServeurRMI servRMI;
+	
+	
 	public boolean isIdentifie() {
 		return identifie;
 	}
@@ -32,4 +34,12 @@ public class Manager {
 	public boolean isAdmin(){
 		return admin;
 	}
+	
+	/*public ServeurRMI getServRMI(){
+		return servRMI;
+	}
+	
+	public void setServeurRMI(ServeurRMI s){
+		servRMI = s;
+	}*/
 }

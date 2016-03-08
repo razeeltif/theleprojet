@@ -6,6 +6,8 @@ public abstract class Compte {
 	int num = -1;
 
 	String afficherListeAnimation(){
+		
+		/*recup toutes les 	animations de la BDD*/
 		return null;
 	}
 	

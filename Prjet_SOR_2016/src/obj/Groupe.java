@@ -1,5 +1,7 @@
 package obj;
 
+import java.util.ArrayList;
+
 public class Groupe {
 
 	private String nom_groupe;
@@ -17,6 +19,17 @@ public class Groupe {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public ArrayList<Animation> getListeAnimation(){
+		
+		ArrayList<Animation> list = null;
+		
+		/*recuperer liste du groupe d'anim*/
+		
+		return list;
+		
+		
 	}
 	
 	

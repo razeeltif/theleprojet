@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../commun_page_menu/menu.jsp" />
 
-<h1>Liste des livres</h1>
+<h1>Liste des animations</h1>
 <%
 	
 /*	Base base = new Base();

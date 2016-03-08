@@ -24,44 +24,39 @@
 			</li>
 			
 			<c:if test="${manager.identifie}">
-			<li class=" first"><a href="../animation/listeAnimation.jsp" title="Accueil">Liste des animations</a><span class="spacer"></span>
-			</li>
-			</c:if>
-			
-			
-			<li class=" first"><a href="../livre/enregistrerLivre.jsp" title="Livres">Livres</a><span class="spacer"></span>
+			<li class=" first"><a href="../animation/listerAnimation.jsp" title="Accueil">Animations</a><span class="spacer"></span>
+				<ul>
+					<li class="first"><a href="../animation/listerAnimation.jsp" title="liste des animation">Liste des animations</a>
+					</li>
+					<c:if test="${manager.identifie && manager.admin}">
+					<li class="first"><a href="../animation/nouvelleAnimation.jsp" title="nouvelle animation">Creer une animation</a>
+					</li>
+					</c:if>
+					<li class="first"><a href="../animation/nouvelleAnimation.jsp" title="nouvelle animation">Creer une animation</a>
+					</li>
+			</c:if>	
+				
+				</ul>
+				</li>
+
+				<c:if test="${manager.identifie && manager.admin}">
 				<ul>
 					<li class="first"><a href="../livre/enregistrerLivre.jsp" title="Enregistrer un livre">Enregistrer un livre</a>
 						<ul>
-							<li class="first">
-								<a href="#" title="Item 1.1.1">Item 1.1.1</a>
-							</li>
-							<li>
-								<a href="#" title="Item 1.1.2">Item 1.1.2</a>
+							<li class=" first"><a href="../animation/nouvelleAnimation.jsp" title="Livres">Ajouter une réservation</a><span class="spacer"></span>
 							</li>
 						</ul>
 					</li>
-					<li>
-						<a href="../livre/listerLivres.jsp" title="Lister les livres">Lister les livres</a>
-					</li>
-					
 				</ul>
+				</c:if>
+
+			
+			<c:if test="${manager.identifie && !manager.admin}">
+			<li class=" first"><a href="../animation/nouvelleAnimation.jsp" title="Livres">Réservation</a><span class="spacer"></span>
 			</li>
-			<li class=" first"><a href="../identification/ident.jsp" title="Item 2">Identification</a><span class="spacer"></span>
-				<ul>
-					<li class="first"><a href="../identification/login.jsp" title="Item 2.1">Connexion</a>
-						<ul>
-							<li class="first">
-								<a href="#" title="Item 1.1.1">Item 1.1.1</a>
-							</li>
-							<li>
-								<a href="#" title="Item 1.1.2">Item 1.1.2</a>
-							</li>
-						</ul>
-					</li>
-					<li><a href="../identification/logout.jsp" title="1">Déconnexion</a></li>
-				</ul>
-			</li>
+			</c:if>
+			
+
 			<c:if test="${manager.identifie}">
 			<li class=" first"><a href="../identification/logout.jsp" title="Deconnexion">Déconnexion</a><span class="spacer"></span>
 			</li>

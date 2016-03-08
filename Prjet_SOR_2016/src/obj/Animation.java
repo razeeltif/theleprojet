@@ -9,6 +9,7 @@ public class Animation {
 	private int duree;
 	private Groupe groupe;
 	
+	
 	public String getNom() {
 		return nom;
 	}
