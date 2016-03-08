@@ -33,10 +33,17 @@ if (request.getParameter("submit") != null) {
 	if(validation.nonVide(Identification.class, "id", request.getParameter("id")) && 
 			validation.estEntier(Identification.class, "id", request.getParameter("id"))){
 		if(validation.estCorrect(Identification.class, "id", request.getParameter("id"))){
-		/*correspondance BDD, modif du manager pour les droits admins*/
-			manager.setIdentifie(true);
-			response.sendRedirect("../accueil/accueil.jsp");
-			return;
+			int num = Integer.parseInt(request.getParameter("id"));
+			//connexion
+			if(manager.getServRMI().isValideCode(num)){
+				manager.setIdentifie(true);
+				//Admin ?
+				if(manager.getServRMI().isAdmin(num)){
+					manager.setAdmin(true);
+					response.sendRedirect("../accueil/accueil.jsp");
+					return;
+				}
+			}
 		}
 	}
 }
