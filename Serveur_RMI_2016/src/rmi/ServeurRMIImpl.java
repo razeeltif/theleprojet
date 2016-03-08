@@ -12,11 +12,7 @@ public class ServeurRMIImpl extends UnicastRemoteObject/* implements ServeurRMI*
 		// TODO Auto-generated constructor stub
 	}
 
-/*
-	@Override
-	public String meth() throws RemoteException {
-		return "retour serveur rmi";
-	}
+
 
 	
 	public static void main(String [] args) throws RemoteException{
@@ -46,5 +42,5 @@ public class ServeurRMIImpl extends UnicastRemoteObject/* implements ServeurRMI*
 		
 	}
 		
-*/	
+
 }

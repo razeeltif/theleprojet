@@ -141,14 +141,21 @@ Base maBase = new Base();
 		maBase.fermer();
 	}
 	
-	public void updateAnim(String nom_anim, String champ, String val){
+	public void updateAnim(String nom_anim, ArrayList<String> champ, ArrayList<String> val){
 		maBase.ouvrir();
+		int i;
 		try {
 			String sql = 
-			 "UPDATE `animation` SET `"+champ+"` = ? WHERE `Nom_Animation` = ?;";
+			 "UPDATE `animation` SET ";
+			for(i = 0; i < champ.size(); i++){
+				sql += "`"+champ.get(i)+"` = ? ";
+			}
+			sql += "WHERE `Nom_Animation` = ?;";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
-			ps.setString(1, val); // num param
-			ps.setString(2, nom_anim); // num param
+			for(i = 0; i < val.size(); i++){
+				ps.setString(i, val.get(i)); // num param
+			}
+			ps.setString(i+1, nom_anim);
 			ps.executeUpdate();
 			
 			try {ps.close();}catch(Exception e){}
