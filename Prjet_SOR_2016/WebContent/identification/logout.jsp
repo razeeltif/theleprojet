@@ -7,6 +7,8 @@
 Manager manager = (Manager)request.getSession().getAttribute("manager");
 if(manager!=null){
 	manager.setIdentifie(false);
+	manager.setAdmin(false);
+	manager.setNum(-1);
 }
 %>
 

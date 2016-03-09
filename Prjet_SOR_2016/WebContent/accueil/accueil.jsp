@@ -18,8 +18,7 @@
 /*
 // crÃ©ation objet persistant
 // equivalent jsp:useBean
-Manager manager = (Manager)request.getSession().
-	getAttribute("manager");
+Manager manager = (Manager)request.getSession().getAttribute("manager");
 if (manager == null) {
 	// si objet persistant pas encore crÃ©Ã©
 	manager = new Manager();
@@ -37,12 +36,13 @@ if (request.getParameter("submit") != null) {
 			//connexion
 			if(manager.getServRMI().isValideCode(num)){
 				manager.setIdentifie(true);
+				manager.setNum(num);
 				//Admin ?
 				if(manager.getServRMI().isAdmin(num)){
 					manager.setAdmin(true);
-					response.sendRedirect("../accueil/accueil.jsp");
-					return;
 				}
+				response.sendRedirect("../accueil/accueil.jsp");
+				return;
 			}
 		}
 	}

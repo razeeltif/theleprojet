@@ -1,4 +1,5 @@
-<%@page import="obj.Animation"%>
+<%@page import="Bean.Animation"%>
+<%@page import="manager.Manager"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,13 +14,13 @@
 
 <h1>Liste des animations</h1>
 <%
-	
-/*		ArrayList <Animation>lst = manager.listerAnimation("%");
+		Manager manager = (Manager)request.getSession().getAttribute("manager");
+		ArrayList <Animation>lst = manager.getServRMI().getAllAnim();
 		out.println("<ul>");
 		for (Animation l : lst) {
-			out.println("<li>"+l.getTitre()+"</li>");
+			out.println("<li>"+l.getNom_animation()+"</li>");
 		}
-		out.println("</ul>");*/
+		out.println("</ul>");
 	
 	
 	
