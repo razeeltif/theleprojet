@@ -14,7 +14,7 @@ public class GroupeTable {
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
-			 "select * from Groupe where Nom_Groupe like ?";
+			 "select * from Groupe where Nom_Groupe = ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_groupe); // num param
 			ResultSet rs = ps.executeQuery();
