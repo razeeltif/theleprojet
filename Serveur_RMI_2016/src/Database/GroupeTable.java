@@ -33,13 +33,13 @@ public class GroupeTable {
 	
 	public ArrayList<Groupe> getAllGroupe(){
 		ArrayList<Groupe> listRes = new ArrayList<Groupe>();
-		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
 			 "select * from Groupe";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				Groupe groupeTmp = new Groupe();
 				groupeTmp.setNom_groupe(rs.getString("Nom_Groupe"));
 				groupeTmp.setDescription(rs.getString("Description"));
 				listRes.add(groupeTmp);
@@ -58,7 +58,7 @@ public class GroupeTable {
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `Groupe`(`Nom_Animation`, `Description`) VALUES (?,?)";
+			 "INSERT INTO `Groupe`(`Nom_Groupe`, `Description`) VALUES (?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_groupe); // num param
 			ps.setString(2, desc); // num param
