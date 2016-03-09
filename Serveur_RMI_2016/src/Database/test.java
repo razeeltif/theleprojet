@@ -3,6 +3,7 @@ package Database;
 import java.util.ArrayList;
 
 import Bean.Animation;
+import Bean.Groupe;
  
 public class test {
 
@@ -73,9 +74,11 @@ public class test {
 		
 		*/
 		
-		ReservationTable tabResa = new ReservationTable();
+		GroupeTable tabgroupe = new GroupeTable();
 		
-		tabResa.addResa(10, "Queen_mary", 840);
+		//tabgroupe.addGroupe("a", "test");
+		Groupe tmp_group = tabgroupe.getGroupe("a");
+		System.out.println(tmp_group.getNom_groupe());
 		
 	}
 

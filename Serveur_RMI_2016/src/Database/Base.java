@@ -6,9 +6,12 @@ import java.sql.SQLException;
 
 public class Base {
 
-	String url = "jdbc:mysql://obiwan.univ-brest.fr/zim1-rouaulul";
+	/*String url = "jdbc:mysql://obiwan.univ-brest.fr/zim1-rouaulul";
 	String user = "rouaulul";
-	String passwd = "tl0stkdl";
+	String passwd = "q";*/
+	String url = "jdbc:mysql://localhost/brest2016";
+	String user = "root";
+	String passwd = "";
 	
 	Connection co = null;
 	

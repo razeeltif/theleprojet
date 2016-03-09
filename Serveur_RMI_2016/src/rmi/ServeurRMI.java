@@ -36,4 +36,7 @@ public interface ServeurRMI extends Remote{
 
 	//méthodes concernant la table Reservation
 	public void addResa(int code_Billet, String nom_Anim, int time) throws RemoteException;
+	
+	// Méthodes concernant la table Horaires_Animation
+	public void createHorairesAnimation(String nom_Anim, int time) throws RemoteException;
 }
