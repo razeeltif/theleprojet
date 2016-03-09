@@ -39,7 +39,7 @@
 						out.println("<input type=\"submit\" value=\"Reserver votre place !\" name=\"submit\" />");
 					}else{
 						//ajout message plus de place
-						out.println("plus de places !");
+						out.println("<li>plus de places !</li>");
 					}
 				}
 			}

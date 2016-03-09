@@ -40,6 +40,26 @@ public class Validation {
 		return res;
 	}
 	
+	public boolean existeDeja(String param,String val) {
+		boolean res = true;
+		
+		if(val == null){
+			val = "";
+		}else{
+			res = false;
+		}
+		
+		if (!res) {
+			valide = false;
+			String mess = "Ce nom existe déjà";
+			erreurs.put(param,mess);
+			System.out.println("WOUCH");
+		}
+		valeurs.put(param,val);
+		return res;
+	}	
+	
+	
 	
 	public boolean estCorrect(Class c, String param,String val) {
 		boolean res = true;

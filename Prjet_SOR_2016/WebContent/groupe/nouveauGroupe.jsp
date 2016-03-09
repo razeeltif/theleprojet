@@ -21,12 +21,17 @@ if (request.getParameter("submit") != null) {
 		String description = validation.getValeurs().get("description");
 		
 		/*verif si nom_groupe existe deja */
-		System.out.println(manager.getServRMI().getGroupe(nom));
-		if(manager.getServRMI().getGroupe(nom) == null){
-			manager.getServRMI().addGroupe(nom, description);
-		}else{
-			
+		String res =null;
+		Groupe groupe = manager.getServRMI().getGroupe(nom);
+		if(groupe != null){
+			System.out.println("YOLO");
+			res = groupe.getNom_groupe();
 		}
+		System.out.println(res);
+		if(res == null){
+			manager.getServRMI().addGroupe(nom, description);
+		}
+		validation.existeDeja("nom", res);
 		response.sendRedirect("../groupe/nouveauGroupe.jsp");
 		return;
 		
