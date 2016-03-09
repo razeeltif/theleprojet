@@ -1,6 +1,8 @@
 package Bean;
- 
-public class Animation {
+
+import java.io.Serializable;
+
+public class Animation implements Serializable{
 
 	String nom_animation;
 	String description;
