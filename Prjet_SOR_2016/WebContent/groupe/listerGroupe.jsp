@@ -1,4 +1,7 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="manager.Manager"%>
+<%@page import="Bean.Groupe"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,12 +16,13 @@
 <h1>Liste des groupes</h1>
 <%
 	
-/*		ArrayList <Groupe>lst = manager.listerGroupe("%");
+		Manager manager = (Manager)request.getSession().getAttribute("manager");
+		ArrayList <Groupe>lst = manager.getServRMI().getAllGroupe();
 		out.println("<ul>");
 		for (Groupe l : lst) {
-			out.println("<li>"+l.getTitre()+"</li>");
+			out.println("<li>"+l.getNom_groupe()+"</li>");
 		}
-		out.println("</ul>");*/
+		out.println("</ul>");
 	
 	
 	
