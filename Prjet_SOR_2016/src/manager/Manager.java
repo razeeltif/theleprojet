@@ -11,7 +11,7 @@ public class Manager {
 	// d'un objet persistant
 	
 	boolean identifie = true;
-	boolean admin = false;
+	boolean admin = true;
 	int num = -1;
 	ServeurRMI servRMI;
 	
