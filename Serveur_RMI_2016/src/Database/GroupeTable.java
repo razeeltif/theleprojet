@@ -11,6 +11,7 @@ public class GroupeTable {
 	Base maBase = new Base();
 	
 	public Groupe getGroupe(String nom_groupe){
+		maBase.ouvrir();
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
@@ -27,11 +28,13 @@ public class GroupeTable {
 		catch (Exception e) {
 			System.out.println("Erreur GroupeTable.getGroupe "+e.getMessage());
 		}
-		
+
+		maBase.fermer(); 
 		return groupeTmp;
 	}
 	
 	public ArrayList<Groupe> getAllGroupe(){
+		maBase.ouvrir();
 		ArrayList<Groupe> listRes = new ArrayList<Groupe>();
 		try {
 			String sql = 
@@ -50,7 +53,8 @@ public class GroupeTable {
 		catch (Exception e) {
 			System.out.println("Erreur GroupeTable.getAllGroupe "+e.getMessage());
 		}
-		
+
+		maBase.fermer(); 
 		return listRes;
 	}
 	
