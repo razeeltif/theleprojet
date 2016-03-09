@@ -10,7 +10,7 @@ public class ReservationTable {
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `reservation`(`Code_Billet`, `Nom_Animation`,`Heure_Debut`) VALUES (?,?,?)";
+			 "INSERT INTO `Reservation`(`Code_Billet`, `Nom_Animation`,`Heure_Debut`) VALUES (?,?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, code_Billet); // num param
 			ps.setString(2, nom_Anim); // num param

@@ -23,10 +23,10 @@ Base maBase = new Base();
 			validAnim.setNom_animation(rs.getString("Nom_Animation"));
 			validAnim.setDescription(rs.getString("Description"));
 			validAnim.setLien_photo(rs.getString("Lien_Photo"));
-			validAnim.setDuree(rs.getInt("duree"));
+			validAnim.setDuree(rs.getInt("Duree"));
 			validAnim.setNb_Places(rs.getInt("Nb_Places"));
 			validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
-			validAnim.setGroupe_name(rs.getString("groupe_name"));
+			validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
 		}
@@ -52,10 +52,10 @@ Base maBase = new Base();
 				validAnim.setNom_animation(rs.getString("Nom_Animation"));
 				validAnim.setDescription(rs.getString("Description"));
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
-				validAnim.setDuree(rs.getInt("duree"));
+				validAnim.setDuree(rs.getInt("Duree"));
 				validAnim.setNb_Places(rs.getInt("Nb_Places"));
 				validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
-				validAnim.setGroupe_name(rs.getString("groupe_name"));
+				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 				listRes.add(validAnim);
 			}
 			try {rs.close();}catch(Exception e){}
@@ -82,10 +82,10 @@ Base maBase = new Base();
 				validAnim.setNom_animation(rs.getString("Nom_Animation"));
 				validAnim.setDescription(rs.getString("Description"));
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
-				validAnim.setDuree(rs.getInt("duree"));
+				validAnim.setDuree(rs.getInt("Duree"));
 				validAnim.setNb_Places(rs.getInt("Nb_Places"));
 				validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
-				validAnim.setGroupe_name(rs.getString("groupe_name"));
+				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 				listRes.add(validAnim);
 			}
 			try {rs.close();}catch(Exception e){}
@@ -103,7 +103,7 @@ Base maBase = new Base();
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `duree`, `Nb_Places`, `Nb_Places_Restantes`, `groupe_name`) VALUES (?,?,?,?,?,?,?)";
+			 "INSERT INTO `animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `Duree`, `Nb_Places`, `Nb_Places_Restantes`, `Groupe_Name`) VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_anim); // num param
 			ps.setString(2, desc); // num param

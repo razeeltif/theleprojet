@@ -14,7 +14,7 @@ public class GroupeTable {
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
-			 "select * from groupe where Nom_Groupe like ?";
+			 "select * from Groupe where Nom_Groupe like ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_groupe); // num param
 			ResultSet rs = ps.executeQuery();
@@ -36,7 +36,7 @@ public class GroupeTable {
 		Groupe groupeTmp = new Groupe();
 		try {
 			String sql = 
-			 "select * from groupe";
+			 "select * from Groupe";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -58,7 +58,7 @@ public class GroupeTable {
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `groupe`(`Nom_Animation`, `Description`) VALUES (?,?)";
+			 "INSERT INTO `Groupe`(`Nom_Animation`, `Description`) VALUES (?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_groupe); // num param
 			ps.setString(2, desc); // num param

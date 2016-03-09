@@ -13,12 +13,12 @@ public class BilletTable {
 		boolean valideCode = false;
 		try {
 			String sql = 
-			 "select code from billet where code = ?";
+			 "select Code from billet where Code = ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, codeBillet); // num param
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			if( rs.getInt("code") != 0){
+			if( rs.getInt("Code") != 0){
 				valideCode = true;
 			}
 			try {rs.close();}catch(Exception e){}
@@ -41,12 +41,12 @@ public class BilletTable {
 		boolean admin = false;
 		try {
 			String sql = 
-			 "select isAdmin from billet where code = ?";
+			 "select IsAdmin from Billet where Code = ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, codeBillet); // num param
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			admin = rs.getBoolean("isAdmin");
+			admin = rs.getBoolean("IsAdmin");
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
 			maBase.fermer();
