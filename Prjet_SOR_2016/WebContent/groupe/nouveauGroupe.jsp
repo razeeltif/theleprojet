@@ -1,4 +1,6 @@
 <%@page import="Bean.Animation"%>
+<%@page import="Bean.Groupe"%>
+<%@page import="manager.Manager"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	
@@ -7,36 +9,25 @@
 	scope="request" /> 
 
 <%
-/*
-//création objet persistant
-//equivalent jsp:useBean
-Manager manager = (Manager)request.getSession().
-	getAttribute("manager");
-if (manager == null) {
-	// si objet persistant pas encore créé
-	manager = new Manager();
-	request.getSession().setAttribute(
-			"manager", manager);
-}
 
-*/
 
 if (request.getParameter("submit") != null) {
 	validation.nonVide(Animation.class, "nom", request.getParameter("nom"));
 	validation.nonVide(Animation.class, "description", request.getParameter("description"));
-//	validation.nonVide(Animation.class, "groupe", request.getParameter("groupe"));
 	
 	if (validation.isValide()) {
+		Manager manager = (Manager)request.getSession().getAttribute("manager");
 		String nom = validation.getValeurs().get("nom");
 		String description = validation.getValeurs().get("description");
 		
-		/*verif si nom_groupe existe deja
-		* getGroupe(nom) == null
-		*/
-		
-		/*ajout de l'aniamtion � la BDD 
+		/*verif si nom_groupe existe deja */
+		System.out.println(manager.getServRMI().getGroupe(nom));
+		if(manager.getServRMI().getGroupe(nom) == null){
 			manager.getServRMI().addGroupe(nom, description);
-		*/
+		}else{
+			
+		}
+		response.sendRedirect("../groupe/nouveauGroupe.jsp");
 		return;
 		
 				

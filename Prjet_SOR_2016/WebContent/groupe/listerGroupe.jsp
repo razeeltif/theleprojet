@@ -2,6 +2,10 @@
 <%@page import="manager.Manager"%>
 <%@page import="Bean.Groupe"%>
 
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,12 +22,15 @@
 	
 		Manager manager = (Manager)request.getSession().getAttribute("manager");
 		ArrayList <Groupe>lst = manager.getServRMI().getAllGroupe();
+		if(lst.size() > 0){
 		out.println("<ul>");
 		for (Groupe l : lst) {
 			out.println("<li>"+l.getNom_groupe()+"</li>");
 		}
 		out.println("</ul>");
-	
+		}else{
+			out.println("<p>Il n'existe aucun groupe</p>");
+		}
 	
 	
 %>
