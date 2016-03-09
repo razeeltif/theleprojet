@@ -9,7 +9,6 @@ public class Animation implements Serializable{
 	String lien_photo;
 	int duree;
 	int nb_Places;
-	int nb_places_Restantes;
 	String groupe_name;
 	
 	
@@ -44,12 +43,6 @@ public class Animation implements Serializable{
 	}
 	public void setNb_Places(int nb_Places) {
 		this.nb_Places = nb_Places;
-	}
-	public int getNb_places_Restantes() {
-		return nb_places_Restantes;
-	}
-	public void setNb_places_Restantes(int nb_places_Restantes) {
-		this.nb_places_Restantes = nb_places_Restantes;
 	}
 	public String getGroupe_name() {
 		return groupe_name;

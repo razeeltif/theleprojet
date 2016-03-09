@@ -25,7 +25,6 @@ Base maBase = new Base();
 			validAnim.setLien_photo(rs.getString("Lien_Photo"));
 			validAnim.setDuree(rs.getInt("Duree"));
 			validAnim.setNb_Places(rs.getInt("Nb_Places"));
-			validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
 			validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
@@ -54,7 +53,6 @@ Base maBase = new Base();
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
 				validAnim.setDuree(rs.getInt("Duree"));
 				validAnim.setNb_Places(rs.getInt("Nb_Places"));
-				validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
 				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 				listRes.add(validAnim);
 			}
@@ -84,7 +82,6 @@ Base maBase = new Base();
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
 				validAnim.setDuree(rs.getInt("Duree"));
 				validAnim.setNb_Places(rs.getInt("Nb_Places"));
-				validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
 				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 				listRes.add(validAnim);
 				listRes.get(0).getNom_animation();
@@ -104,15 +101,14 @@ Base maBase = new Base();
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `Animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `Duree`, `Nb_Places`, `Nb_Places_Restantes`, `Groupe_Name`) VALUES (?,?,?,?,?,?,?)";
+			 "INSERT INTO `Animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `Duree`, `Nb_Places`, `Groupe_Name`) VALUES (?,?,?,?,?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_anim); // num param
 			ps.setString(2, desc); // num param
 			ps.setString(3, photo); // num param
 			ps.setInt(4, duree); // num param
 			ps.setInt(5, nbPlaces); // num param
-			ps.setInt(6, nbPlaces); // num param
-			ps.setString(7, nom_Groupe); // num param
+			ps.setString(6, nom_Groupe); // num param
 			ps.executeUpdate();
 			
 			try {ps.close();}catch(Exception e){}

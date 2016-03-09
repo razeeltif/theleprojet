@@ -9,7 +9,7 @@ public class test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		AnimationTable testAnim = new AnimationTable();
+		/*AnimationTable testAnim = new AnimationTable();
 		Animation res_Anim;
 		ArrayList<Animation> list_res_Anim;
 		BilletTable testBillet = new BilletTable();
@@ -71,7 +71,11 @@ public class test {
 		System.out.println(res_Anim.getDuree());
 		System.out.println(res_Anim.getNb_places_Restantes());
 		
+		*/
 		
+		ReservationTable tabResa = new ReservationTable();
+		
+		tabResa.addResa(10, "Queen_mary", 840);
 		
 	}
 

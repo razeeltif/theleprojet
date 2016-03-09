@@ -16,7 +16,16 @@ public class ReservationTable {
 			ps.setString(2, nom_Anim); // num param
 			ps.setInt(3, time); // num param
 			ps.executeUpdate();
-			
+			/*
+			sql = "UPDATE `Horaires_Animation` SET `Nb_Places_Restantes` "
+					+"= ((SELECT `Nb_Places_Restantes` FROM `Horaires_Animation` "
+					+"WHERE `Nom_Animation` like ? and `Heure_Debut` = ?) - 1) "
+					+"WHERE `Nom_Animation` like ? and `Heure_Debut` = ?";
+			ps = maBase.co.prepareStatement(sql);
+			ps.setString(1, nom_Anim); // num param
+			ps.setInt(2, time); // num param
+			System.out.println(ps.toString());
+			*/
 			try {ps.close();}catch(Exception e){}
 		}
 		catch (Exception e) {
