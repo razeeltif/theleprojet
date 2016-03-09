@@ -13,7 +13,7 @@ public class BilletTable {
 		boolean valideCode = false;
 		try {
 			String sql = 
-			 "select Code from billet where Code = ?";
+			 "select Code from Billet where Code = ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, codeBillet); // num param
 			ResultSet rs = ps.executeQuery();

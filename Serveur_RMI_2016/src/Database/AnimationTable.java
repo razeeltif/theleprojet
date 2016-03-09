@@ -103,7 +103,7 @@ Base maBase = new Base();
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "INSERT INTO `animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `Duree`, `Nb_Places`, `Nb_Places_Restantes`, `Groupe_Name`) VALUES (?,?,?,?,?,?,?)";
+			 "INSERT INTO `Animation`(`Nom_Animation`, `Description`, `Lien_Photo`, `Duree`, `Nb_Places`, `Nb_Places_Restantes`, `Groupe_Name`) VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_anim); // num param
 			ps.setString(2, desc); // num param
@@ -127,7 +127,7 @@ Base maBase = new Base();
 		maBase.ouvrir();
 		try {
 			String sql = 
-			 "DELETE FROM `animation` WHERE `Nom_Animation` like ?";
+			 "DELETE FROM `Animation` WHERE `Nom_Animation` like ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_anim); // num param
 			ps.executeUpdate();
@@ -146,7 +146,7 @@ Base maBase = new Base();
 		int i;
 		try {
 			String sql = 
-			 "UPDATE `animation` SET ";
+			 "UPDATE `Animation` SET ";
 			for(i = 0; i < champ.size(); i++){
 				sql += "`"+champ.get(i)+"` = ? ";
 			}
@@ -156,6 +156,7 @@ Base maBase = new Base();
 				ps.setString(i, val.get(i)); // num param
 			}
 			ps.setString(i+1, nom_anim);
+			System.out.println(ps.toString());
 			ps.executeUpdate();
 			
 			try {ps.close();}catch(Exception e){}
