@@ -70,6 +70,6 @@ public class GroupeTable {
 			System.out.println("Erreur GroupeTable.addGroupe "+e.getMessage());
 		}
 
-		maBase.fermer();
+		maBase.fermer(); 
 	}
 }
