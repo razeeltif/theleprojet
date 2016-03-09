@@ -32,10 +32,14 @@ public class test {
 		System.out.println(res_Anim.getGroupe_name());
 		
 		list_res_Anim = testAnim.getAnimByGroupe("bobato");
-		System.out.println(list_res_Anim.size()+" bobatos");
+		for(int i = 0; i < list_res_Anim.size(); i++){
+			System.out.println(list_res_Anim.get(i).getNom_animation()+" bobato");
+		}
 		
 		list_res_Anim = testAnim.getAllAnim();
-		System.out.println(list_res_Anim.size()+" anims");
+		for(int i = 0; i < list_res_Anim.size(); i++){
+			System.out.println(list_res_Anim.get(i).getNom_animation()+" anim");
+		}
 		
 
 		res_Anim = testAnim.getAnim("Belem");

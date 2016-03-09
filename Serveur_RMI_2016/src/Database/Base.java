@@ -16,7 +16,7 @@ public class Base {
 		try {
 			co = DriverManager.getConnection(
 					url, user, passwd);
-			System.out.println("Base.ouvrir "+url);
+			//System.out.println("Base.ouvrir "+url);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(

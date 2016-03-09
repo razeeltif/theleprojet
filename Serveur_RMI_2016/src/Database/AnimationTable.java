@@ -41,7 +41,6 @@ Base maBase = new Base();
 	public ArrayList<Animation> getAnimByGroupe(String nomGroupe){
 		maBase.ouvrir();
 		ArrayList<Animation> listRes = new ArrayList<Animation>();
-		Animation validAnim = new Animation();
 		try {
 			String sql = 
 			 "select * from Animation where Groupe_Name like ?";
@@ -49,6 +48,7 @@ Base maBase = new Base();
 			ps.setString(1, nomGroupe); // num param
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				Animation validAnim = new Animation();
 				validAnim.setNom_animation(rs.getString("Nom_Animation"));
 				validAnim.setDescription(rs.getString("Description"));
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
@@ -72,13 +72,13 @@ Base maBase = new Base();
 	public ArrayList<Animation> getAllAnim(){
 		maBase.ouvrir();
 		ArrayList<Animation> listRes = new ArrayList<Animation>();
-		Animation validAnim = new Animation();
 		try {
 			String sql = 
 			 "select * from Animation";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				Animation validAnim = new Animation();
 				validAnim.setNom_animation(rs.getString("Nom_Animation"));
 				validAnim.setDescription(rs.getString("Description"));
 				validAnim.setLien_photo(rs.getString("Lien_Photo"));
@@ -87,6 +87,7 @@ Base maBase = new Base();
 				validAnim.setNb_places_Restantes(rs.getInt("Nb_Places_Restantes"));
 				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
 				listRes.add(validAnim);
+				listRes.get(0).getNom_animation();
 			}
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
