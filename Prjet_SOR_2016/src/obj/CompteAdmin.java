@@ -8,11 +8,11 @@ public class CompteAdmin extends Compte{
 		
 	}
 	
-	public Animation addAnimation(){
+	public Macouille addAnimation(){
 		return null;
 	}
 	
-	public Animation delAnimation(){
+	public Macouille delAnimation(){
 		return null;
 	}
 	

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class ListeReservation {
 	
-	ArrayList<Animation> listReserv = new ArrayList<Animation>();
+	ArrayList<Macouille> listReserv = new ArrayList<Macouille>();
 	
 	
 	
-	boolean add(Animation a){
+	boolean add(Macouille a){
 		
 		boolean res = false;
 		
@@ -29,7 +29,7 @@ public class ListeReservation {
 		listReserv = listerReservation();
 	}
 	
-	ArrayList<Animation> listerReservation(){
+	ArrayList<Macouille> listerReservation(){
 		
 		removeAll();
 		
@@ -41,11 +41,11 @@ public class ListeReservation {
 		
 	}
 
-	public ArrayList<Animation> getListReserv() {
+	public ArrayList<Macouille> getListReserv() {
 		return listReserv;
 	}
 
-	public void setListReserv(ArrayList<Animation> listReserv) {
+	public void setListReserv(ArrayList<Macouille> listReserv) {
 		this.listReserv = listReserv;
 	}
 

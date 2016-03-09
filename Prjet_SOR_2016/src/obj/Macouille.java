@@ -1,6 +1,6 @@
 package obj;
 
-public class Animation {
+public class Macouille {
 
 	private String nom;
 	private String description;

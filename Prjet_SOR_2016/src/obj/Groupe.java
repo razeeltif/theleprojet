@@ -21,9 +21,9 @@ public class Groupe {
 		this.description = description;
 	}
 	
-	public ArrayList<Animation> getListeAnimation(){
+	public ArrayList<Macouille> getListeAnimation(){
 		
-		ArrayList<Animation> list = null;
+		ArrayList<Macouille> list = null;
 		
 		/*recuperer liste du groupe d'anim*/
 		
