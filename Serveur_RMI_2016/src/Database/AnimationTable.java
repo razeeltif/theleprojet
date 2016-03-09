@@ -148,12 +148,15 @@ Base maBase = new Base();
 			String sql = 
 			 "UPDATE `Animation` SET ";
 			for(i = 0; i < champ.size(); i++){
+				if(i!=0){
+					sql += ", ";
+				}
 				sql += "`"+champ.get(i)+"` = ? ";
 			}
 			sql += "WHERE `Nom_Animation` = ?;";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			for(i = 0; i < val.size(); i++){
-				ps.setString(i, val.get(i)); // num param
+				ps.setString(i+1, val.get(i)); // num param
 			}
 			ps.setString(i+1, nom_anim);
 			System.out.println(ps.toString());

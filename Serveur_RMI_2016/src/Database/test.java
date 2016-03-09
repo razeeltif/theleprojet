@@ -51,17 +51,21 @@ public class test {
 		res_Anim = testAnim.getAnim("Belem");
 		System.out.println(res_Anim.getNom_animation());
 		System.out.println(res_Anim.getDuree());
+		System.out.println(res_Anim.getNb_places_Restantes());
 		
 		ArrayList<String> champs = new ArrayList<String>();
-		champs.add("duree");
+		champs.add("Duree");
+		champs.add("Nb_Places_Restantes");
 
 		ArrayList<String> vals = new ArrayList<String>();
 		vals.add("120");
+		vals.add("20");
 		
 		testAnim.updateAnim("Belem", champs, vals);
 		res_Anim = testAnim.getAnim("Belem");
 		System.out.println(res_Anim.getNom_animation());
 		System.out.println(res_Anim.getDuree());
+		System.out.println(res_Anim.getNb_places_Restantes());
 		
 		
 		
