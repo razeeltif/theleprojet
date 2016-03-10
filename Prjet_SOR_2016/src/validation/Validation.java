@@ -12,6 +12,16 @@ public class Validation {
 	Hashtable <String,String> valeurs = new Hashtable<String,String>();
 	Hashtable <String,String> erreurs = new Hashtable<String,String>();
 	
+	String messValid;
+	
+	public String getMessValid() {
+		return messValid;
+	}
+
+	public void setMessValid(String messValid) {
+		this.messValid = messValid;
+	}
+
 	public boolean nonVide(Class c,String param,String val) {
 		boolean res = true;
 		
@@ -40,7 +50,7 @@ public class Validation {
 		return res;
 	}
 	
-	public boolean existeDeja(String param,String val) {
+	public boolean existePas(Class c, String param,String val) {
 		boolean res = true;
 		
 		if(val == null){
@@ -51,9 +61,7 @@ public class Validation {
 		
 		if (!res) {
 			valide = false;
-			String mess = "Ce nom existe déjà";
-			erreurs.put(param,mess);
-			System.out.println("WOUCH");
+			erreurs.put(param,"Ce nom existe déjà");
 		}
 		valeurs.put(param,val);
 		return res;

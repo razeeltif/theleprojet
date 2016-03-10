@@ -1,12 +1,66 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator" %>
+<%@page import="java.util.Hashtable" %>
+<%@page import="Bean.Groupe" %>
+<%@page import="Bean.Animation" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	
 <jsp:useBean id="validation" 
 	class="validation.Validation"
 	scope="request" /> 
+
+<jsp:useBean id="manager" 
+	class="manager.Manager"
+	scope="session" />  
    
-   
-    
+<%
+
+if (request.getParameter("submit") != null) {
+	validation.nonVide(Animation.class, "nom", request.getParameter("nom"));
+	validation.nonVide(Animation.class, "description", request.getParameter("description"));
+	validation.nonVide(Animation.class, "heure", request.getParameter("heure"));
+	validation.nonVide(Animation.class, "duree", request.getParameter("duree"));
+	validation.nonVide(Animation.class, "nb_places", request.getParameter("nb_places"));
+	validation.nonVide(Animation.class, "photo", request.getParameter("photo"));
+	
+	validation.estEntier(Animation.class, "heure", request.getParameter("heure"));
+	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
+	validation.estEntier(Animation.class, "nb_places", request.getParameter("nb_places"));
+
+	if (validation.isValide()) {
+		
+		String nom = validation.getValeurs().get("nom");
+		String description = validation.getValeurs().get("description");
+		int heure = Integer.parseInt(request.getParameter("heure"));
+		int duree = Integer.parseInt(request.getParameter("duree"));
+		int nb_places = Integer.parseInt(request.getParameter("nb_places"));
+		String photo = validation.getValeurs().get("photo");
+		String nom_groupe = request.getParameter("groupe");
+		
+		/*verif si nom_groupe existe deja */
+		String res =null;
+		Animation anim = manager.getServRMI().getAnim(nom);
+		if(anim != null){
+			res = anim.getNom_animation();
+		}
+		System.out.println(res);
+		if(validation.existePas(Groupe.class,"nom", res)){
+			//ajout dans la BDD
+			manager.getServRMI().addAnim(nom, description, photo, duree, nb_places, nom_groupe);
+			validation.setMessValid("L'animation a été créée");
+			validation.setValeurs(new Hashtable<String,String>());
+			validation.setErreurs(new Hashtable<String,String>());
+			
+			//response.sendRedirect("../animation/nouvelleAnimation.jsp");
+			//return;	
+		}			
+	}
+	System.out.println(validation.getValeurs());
+}
+
+%>  
     
         
     
@@ -14,7 +68,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Creation animation</title>
+<title>Brest 2016</title>
 </head>
 <body>
 <jsp:include page="../commun_page_menu/menu.jsp" />
@@ -61,27 +115,16 @@
 		<tr>
 			<td>groupe : </td>
 			<td>
-				<select name="thelist" >
+				<select name="groupe" >
 				<%
-				/*ArrayList<String> groupe = manager.gerServRMI().getListGroupe();
-				* Iterator itr = al.iterator();
+				ArrayList<Groupe> groupe = manager.getServRMI().getAllGroupe();
+				Iterator<Groupe> itr = groupe.iterator();
 			      while(itr.hasNext()) {
-			         String element = itr.next();
+			        Groupe element = itr.next();
 					out.println("<option>");
-					out.println(element);
+					out.println(element.getNom_groupe());
 					out.println("</option>");
 			      }
-				*/
-				
-				for(int i = 0; i < 5; i++){
-				out.println("<option>");
-				
-				out.println(i);
-				
-				out.println("</option>");
-				}
-				
-				
 				%>
 
 				</select>
@@ -91,9 +134,8 @@
 		
 		<tr>
 			<td>image :</td>
-			<td><input type="file" name="${validation.valeurs['photo']}" size="35" name="photo"/>
-				<br />
-			</td>
+			<td><input type="file" value="${validation.valeurs['photo']}" size="35" name="photo"/></td>
+			<td>${validation.erreurs['photo']}</td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
@@ -103,6 +145,8 @@
 		</tr>
 	</table>
 </form>
+
+<p>${validation.messValid}</p>
 
 
 

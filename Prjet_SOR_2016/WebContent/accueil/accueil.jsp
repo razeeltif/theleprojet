@@ -15,18 +15,6 @@
     
     
 <%
-/*
-// crÃ©ation objet persistant
-// equivalent jsp:useBean
-Manager manager = (Manager)request.getSession().getAttribute("manager");
-if (manager == null) {
-	// si objet persistant pas encore crÃ©Ã©
-	manager = new Manager();
-	request.getSession().setAttribute(
-			"manager", manager);
-}
-
-*/
 
 if (request.getParameter("submit") != null) {
 	if(validation.nonVide(Identification.class, "id", request.getParameter("id")) && 
@@ -54,7 +42,7 @@ if (request.getParameter("submit") != null) {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Accueil</title>
+<title>Brest 2016</title>
 </head>
 <body>
 <jsp:include page="../commun_page_menu/menu.jsp" />

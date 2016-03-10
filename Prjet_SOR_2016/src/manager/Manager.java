@@ -10,8 +10,8 @@ public class Manager {
 	// classe pour la création
 	// d'un objet persistant
 	
-	boolean identifie = true;
-	boolean admin = true;
+	boolean identifie = false;
+	boolean admin = false;
 	int num = -1;
 	ServeurRMI servRMI;
 	

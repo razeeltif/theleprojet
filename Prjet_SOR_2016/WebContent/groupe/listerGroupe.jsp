@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lister les groupes</title>
+<title>Brest 2016</title>
 </head>
 <body>
 <jsp:include page="../commun_page_menu/menu.jsp" />
