@@ -1,0 +1,19 @@
+td /* Toutes les cellules des tableaux... */
+
+{
+    border: 1px solid black; /* auront une bordure de 1px */
+   
+}
+
+td.end{
+	border:none;
+	
+}
+
+table{
+	border-collapse: collapse;
+}
+
+li{
+	position: relative;
+}
