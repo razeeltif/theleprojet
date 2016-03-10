@@ -28,6 +28,8 @@
 				<ul>
 					<li class="first"><a href="../animation/listerAnimation.jsp" title="liste des animation">Liste des animations</a>
 					</li>
+					<li class="first"><a href="../animation/listerAnimation.jsp" title="gerer PDF">Generer un PDF</a>
+					</li>
 					<c:if test="${manager.identifie && manager.admin}">
 					<li class="first"><a href="../animation/nouvelleAnimation.jsp" title="nouvelle animation">Creer une animation</a>
 					</li>
@@ -41,7 +43,7 @@
 					<ul>
 						<li class=" first"><a href="../groupe/listerGroupe.jsp" title="Ajouter Livre">Liste des groupes</a><span class="spacer"></span>
 						</li>
-						<li class=" first"><a href="../groupe/nouveauGroupe.jsp" title="Ajouter Livre">Ajouter une groupe</a><span class="spacer"></span>
+						<li class=" first"><a href="../groupe/nouveauGroupe.jsp" title="Ajouter Livre">Ajouter un groupe</a><span class="spacer"></span>
 						</li>
 					</ul>
 				</li>

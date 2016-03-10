@@ -4,6 +4,8 @@
 <%@page import="Bean.Groupe" %>
 <%@page import="Bean.Animation" %>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	
@@ -14,6 +16,10 @@
 <jsp:useBean id="manager" 
 	class="manager.Manager"
 	scope="session" />  
+	
+<jsp:useBean id="listeHeure" 
+	class="obj.ListeHeure"
+	scope="session" />     
    
 <%
 
@@ -24,6 +30,9 @@ if (request.getParameter("submit") != null) {
 	validation.nonVide(Animation.class, "duree", request.getParameter("duree"));
 	validation.nonVide(Animation.class, "nb_places", request.getParameter("nb_places"));
 	validation.nonVide(Animation.class, "photo", request.getParameter("photo"));
+	for(int i = 0; i < listeHeure.getNb(); i++){
+		validation.nonVide(Animation.class, "heure"+i, request.getParameter("heure"+i));
+	}
 	
 	validation.estEntier(Animation.class, "heure", request.getParameter("heure"));
 	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
@@ -59,6 +68,21 @@ if (request.getParameter("submit") != null) {
 	}
 	System.out.println(validation.getValeurs());
 }
+
+if (request.getParameter("+") != null) {
+	listeHeure.setNb(listeHeure.getNb() + 1);
+}
+if (request.getParameter("-") != null) {
+	if(listeHeure.getNb() > 0){
+		listeHeure.setNb(listeHeure.getNb() - 1);
+	}
+}
+
+System.out.println(listeHeure.getNb());
+
+
+
+
 
 %>  
     
@@ -143,6 +167,31 @@ if (request.getParameter("submit") != null) {
 				value="Valider"
 				name="submit" /></td>
 		</tr>
+		
+		<tr>
+			<td>heure : </td>
+			<table>
+				<tr>
+					<td>
+					<c:forEach begin="0" end="${listHeure.nb}" >
+		  				 <c:out value="${name}"/><p>
+					</c:forEach>
+					</td>
+				</tr>
+				
+			<%/*
+			for(int i = 0; i < listeHeure.getNb(); i++){
+				//champs texte pour heure
+				out.println("<tr><td><input type=\"text\" value= \"\" name=\"heure"+i+"\"/></td><td>"+validation.valeurs[]  +"</td></tr>");
+			}*/
+			%>
+			</table>
+			
+		<tr>
+			<td><input type="submit" value="+" name="+" /></td>
+			<td><input type="submit" value="-" name="-" /></td>
+		</tr>
+		
 	</table>
 </form>
 
