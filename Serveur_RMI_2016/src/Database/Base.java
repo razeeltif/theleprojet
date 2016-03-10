@@ -8,7 +8,7 @@ public class Base {
 
 	String url = "jdbc:mysql://obiwan.univ-brest.fr/zim1-rouaulul";
 	String user = "rouaulul";
-	String passwd = "tl0stkdl";
+	String passwd = "s20jvqq1";
 	
 	Connection co = null;
 	
