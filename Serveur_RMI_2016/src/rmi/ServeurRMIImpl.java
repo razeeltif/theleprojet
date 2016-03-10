@@ -172,7 +172,11 @@ public class ServeurRMIImpl implements ServeurRMI{
 	}
 	
 
-
+	public ArrayList<Horaires> getHoraires(String nom_Anim) throws RemoteException{
+		// TODO Auto-generated method stub
+		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
+		return tabHor.getHoraires(nom_Anim);
+	}
 	@Override
 	public boolean createHorairesAnimation(String nom_Anim, int time) throws RemoteException {
 		// TODO Auto-generated method stub
