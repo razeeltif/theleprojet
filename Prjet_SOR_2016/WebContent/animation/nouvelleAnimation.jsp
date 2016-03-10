@@ -149,7 +149,5 @@ if (request.getParameter("submit") != null) {
 <p>${validation.messValid}</p>
 
 
-
-
 </body>
 </html>
