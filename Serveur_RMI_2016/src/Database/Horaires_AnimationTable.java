@@ -49,8 +49,9 @@ public class Horaires_AnimationTable {
 			ps.setString(1, nom_Anim); // num param
 			ps.setString(2, time); // num param
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			res = rs.getInt("Nb_Places_Restantes");
+			if(rs.first()){
+				res = rs.getInt("Nb_Places_Restantes");
+			}
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
 		}

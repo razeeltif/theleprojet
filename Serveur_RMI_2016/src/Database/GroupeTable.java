@@ -19,9 +19,10 @@ public class GroupeTable {
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nom_groupe); // num param
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			groupeTmp.setNom_groupe(rs.getString("Nom_Groupe"));
-			groupeTmp.setDescription(rs.getString("Description"));
+			if(rs.first()){
+				groupeTmp.setNom_groupe(rs.getString("Nom_Groupe"));
+				groupeTmp.setDescription(rs.getString("Description"));
+			}
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
 		}

@@ -133,7 +133,9 @@ public class ServeurRMIImpl implements ServeurRMI{
 	@Override
 	public boolean addGroupe(String nom_groupe, String desc) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println("coucou 1");
 		GroupeTable tabGrp = new GroupeTable();
+		System.out.println("coucou 2");
 		return tabGrp.addGroupe(nom_groupe, desc);
 		
 	}

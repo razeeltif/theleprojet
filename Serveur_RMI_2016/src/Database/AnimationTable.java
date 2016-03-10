@@ -19,13 +19,14 @@ Base maBase = new Base();
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setString(1, nomAnim); // num param
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			validAnim.setNom_animation(rs.getString("Nom_Animation"));
-			validAnim.setDescription(rs.getString("Description"));
-			validAnim.setLien_photo(rs.getString("Lien_Photo"));
-			validAnim.setDuree(rs.getInt("Duree"));
-			validAnim.setNb_Places(rs.getInt("Nb_Places"));
-			validAnim.setGroupe_name(rs.getString("Groupe_Name"));
+			if(rs.first()){
+				validAnim.setNom_animation(rs.getString("Nom_Animation"));
+				validAnim.setDescription(rs.getString("Description"));
+				validAnim.setLien_photo(rs.getString("Lien_Photo"));
+				validAnim.setDuree(rs.getInt("Duree"));
+				validAnim.setNb_Places(rs.getInt("Nb_Places"));
+				validAnim.setGroupe_name(rs.getString("Groupe_Name"));
+			}
 			try {rs.close();}catch(Exception e){}
 			try {ps.close();}catch(Exception e){}
 		}
