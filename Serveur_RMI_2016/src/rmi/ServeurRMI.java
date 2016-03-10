@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Bean.Animation;
 import Bean.Groupe;
+import Bean.Horaires;
  
 public interface ServeurRMI extends Remote{
 
@@ -46,6 +47,8 @@ public interface ServeurRMI extends Remote{
 	public boolean deleteResa(String code_Billet, String nom_Anim, String time) throws RemoteException;
 	
 	// Méthodes concernant la table Horaires_Animation
+	//retour : 
+	public ArrayList<Horaires> getHoraires(String nom_Anim) throws RemoteException;
 	//retour : true si la methode n'a rencontrée aucun problèmes
 	public boolean createHorairesAnimation(String nom_Anim, int time) throws RemoteException;
 	//retour : true si la methode n'a rencontrée aucun problèmes
