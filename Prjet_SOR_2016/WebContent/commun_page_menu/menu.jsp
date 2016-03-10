@@ -43,7 +43,7 @@
 					<ul>
 						<li class=" first"><a href="../groupe/listerGroupe.jsp" title="Ajouter Livre">Liste des groupes</a><span class="spacer"></span>
 						</li>
-						<li class=" first"><a href="../groupe/nouveauGroupe.jsp" title="Ajouter Livre">Ajouter une groupe</a><span class="spacer"></span>
+						<li class=" first"><a href="../groupe/nouveauGroupe.jsp" title="Ajouter Livre">Ajouter un groupe</a><span class="spacer"></span>
 						</li>
 					</ul>
 				</li>
