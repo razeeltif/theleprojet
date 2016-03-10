@@ -142,7 +142,17 @@ public class ServeurRMIImpl implements ServeurRMI{
 	public void addResa(int code_Billet, String nom_Anim, int time) throws RemoteException {
 		// TODO Auto-generated method stub
 		ReservationTable tabResa = new ReservationTable();
+		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
 		tabResa.addResa(code_Billet, nom_Anim, time);
+		tabHor.decrementeNbPlaces(nom_Anim, time);
+	}
+
+
+	@Override
+	public void createHorairesAnimation(String nom_Anim, int time) throws RemoteException {
+		// TODO Auto-generated method stub
+		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
+		tabHor.createHorairesAnimation(nom_Anim, time);
 	}
 		
 
