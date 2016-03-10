@@ -15,12 +15,8 @@ public class ClientRMI {
 			
 			ServeurRMI srmi = (ServeurRMI) registry.lookup("serveurRMI");
 			
-			ArrayList<Animation> res = srmi.getAllAnim();
-			for (int i = 0; i < res.size(); i++) {
-				System.out.println("res "+i+"= "+res.get(i).getNom_animation());
-				System.out.println("	 "+res.get(i).getDescription());
-				System.out.println("	 "+res.get(i).getGroupe_name());
-			}
+			if(srmi.deleteGroupe("tamagochi"))
+				System.out.println("C'est GG");
 		}catch(Exception e){
 			System.out.println("Erreur CLient RMI "+e.getMessage());
 		}

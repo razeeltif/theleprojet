@@ -89,27 +89,28 @@ public class ServeurRMIImpl implements ServeurRMI{
 
 
 	@Override
-	public void addAnim(String nom_anim, String desc, String photo, int duree, int nbPlaces, String nom_Groupe)
+	public boolean addAnim(String nom_anim, String desc, String photo, int duree, int nbPlaces, String nom_Groupe)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		AnimationTable tabAnim = new AnimationTable();
-		tabAnim.addAnim(nom_anim, desc, photo, duree, nbPlaces, nom_Groupe);
+		return tabAnim.addAnim(nom_anim, desc, photo, duree, nbPlaces, nom_Groupe);
 	}
 
 
 	@Override
-	public void deleteAnim(String nom_anim) throws RemoteException {
+	public boolean deleteAnim(String nom_anim) throws RemoteException {
 		// TODO Auto-generated method stub
+		this.deleteHorairesAnimation(nom_anim, "%");
 		AnimationTable tabAnim = new AnimationTable();
-		tabAnim.deleteAnim(nom_anim);
+		return tabAnim.deleteAnim(nom_anim);
 	}
 
 
 	@Override
-	public void updateAnim(String nom_anim, ArrayList<String> champ, ArrayList<String> val) throws RemoteException {
+	public boolean updateAnim(String nom_anim, ArrayList<String> champ, ArrayList<String> val) throws RemoteException {
 		// TODO Auto-generated method stub
 		AnimationTable tabAnim = new AnimationTable();
-		tabAnim.updateAnim(nom_anim, champ, val);
+		return tabAnim.updateAnim(nom_anim, champ, val);
 	}
 
 
@@ -130,30 +131,61 @@ public class ServeurRMIImpl implements ServeurRMI{
 
 
 	@Override
-	public void addGroupe(String nom_groupe, String desc) throws RemoteException {
+	public boolean addGroupe(String nom_groupe, String desc) throws RemoteException {
 		// TODO Auto-generated method stub
 		GroupeTable tabGrp = new GroupeTable();
-		tabGrp.addGroupe(nom_groupe, desc);
+		return tabGrp.addGroupe(nom_groupe, desc);
 		
 	}
 
 
+	public boolean deleteGroupe(String nom_groupe) throws RemoteException{
+		ArrayList<Animation> animTmp = this.getAnimByGroupe(nom_groupe);
+		for(int i = 0; i < animTmp.size();i++){
+			this.deleteAnim(animTmp.get(i).getNom_animation());
+		}
+
+		GroupeTable tabGrp = new GroupeTable();
+		return tabGrp.deleteGroupe(nom_groupe);
+		
+	}
+	
+	
 	@Override
-	public void addResa(int code_Billet, String nom_Anim, int time) throws RemoteException {
+	public boolean addResa(int code_Billet, String nom_Anim, String time) throws RemoteException {
 		// TODO Auto-generated method stub
 		ReservationTable tabResa = new ReservationTable();
 		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
 		tabResa.addResa(code_Billet, nom_Anim, time);
-		tabHor.decrementeNbPlaces(nom_Anim, time);
+		return tabHor.decrementeNbPlaces(nom_Anim, time, 1);
 	}
+
+	public boolean deleteResa(String code_Billet, String nom_Anim, String time) throws RemoteException{
+		int i = 0;
+		ReservationTable tabResa = new ReservationTable();
+		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
+		i=tabResa.deleteResa(code_Billet, nom_Anim, time);
+		if(!time.equals("%")){
+			tabHor.decrementeNbPlaces(nom_Anim, time, -i);
+		}
+		return false;
+	}
+	
 
 
 	@Override
-	public void createHorairesAnimation(String nom_Anim, int time) throws RemoteException {
+	public boolean createHorairesAnimation(String nom_Anim, int time) throws RemoteException {
 		// TODO Auto-generated method stub
 		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
-		tabHor.createHorairesAnimation(nom_Anim, time);
+		return tabHor.createHorairesAnimation(nom_Anim, time);
 	}
 		
 
+	@Override
+	public boolean deleteHorairesAnimation(String nom_Anim, String time) throws RemoteException {
+		// TODO Auto-generated method stub
+		this.deleteResa("%", nom_Anim, time);
+		Horaires_AnimationTable tabHor = new Horaires_AnimationTable();
+		return tabHor.deleteHorairesAnimation(nom_Anim, time);
+	}
 }

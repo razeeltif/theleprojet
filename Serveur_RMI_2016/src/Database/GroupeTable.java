@@ -58,7 +58,7 @@ public class GroupeTable {
 		return listRes;
 	}
 	
-	public void addGroupe(String nom_groupe, String desc){
+	public boolean addGroupe(String nom_groupe, String desc){
 		maBase.ouvrir();
 		try {
 			String sql = 
@@ -72,8 +72,31 @@ public class GroupeTable {
 		}
 		catch (Exception e) {
 			System.out.println("Erreur GroupeTable.addGroupe "+e.getMessage());
+			maBase.fermer(); 
+			return false;
 		}
 
 		maBase.fermer(); 
+		return true;
+	}
+	
+	public boolean deleteGroupe(String nom_groupe){
+		maBase.ouvrir();
+		try {
+			String sql = 
+			 "DELETE FROM `Groupe` WHERE `Nom_Groupe` LIKE ?";
+			PreparedStatement ps = maBase.co.prepareStatement(sql);
+			ps.setString(1, nom_groupe); // num param
+			ps.executeUpdate();
+			try {ps.close();}catch(Exception e){}
+		}
+		catch (Exception e) {
+			System.out.println("Erreur GroupeTable.addGroupe "+e.getMessage());
+			maBase.fermer(); 
+			return false;
+		}
+
+		maBase.fermer(); 
+		return true;
 	}
 }
