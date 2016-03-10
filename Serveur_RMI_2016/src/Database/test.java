@@ -1,13 +1,14 @@
 package Database;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import Bean.Animation;
-import Bean.Groupe;
+import Bean.*;
+import rmi.*;
  
 public class test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		// TODO Auto-generated method stub
 
 		/*AnimationTable testAnim = new AnimationTable();
@@ -72,13 +73,13 @@ public class test {
 		System.out.println(res_Anim.getDuree());
 		System.out.println(res_Anim.getNb_places_Restantes());
 		
-		*/
 		
 		GroupeTable tabgroupe = new GroupeTable();
 		
 		//tabgroupe.addGroupe("a", "test");
 		Groupe tmp_group = tabgroupe.getGroupe("a");
 		System.out.println(tmp_group.getNom_groupe());
+		tabgroupe.deleteGroupe("bobato");*/
 		
 	}
 

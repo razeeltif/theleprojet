@@ -97,7 +97,7 @@ Base maBase = new Base();
 		return listRes;
 	}
 	
-	public void addAnim(String nom_anim, String desc, String photo, int duree, int nbPlaces, String nom_Groupe){
+	public boolean addAnim(String nom_anim, String desc, String photo, int duree, int nbPlaces, String nom_Groupe){
 		maBase.ouvrir();
 		try {
 			String sql = 
@@ -115,12 +115,15 @@ Base maBase = new Base();
 		}
 		catch (Exception e) {
 			System.out.println("Erreur AnimationTable.addAnim "+e.getMessage());
+			maBase.fermer();
+			return false;
 		}
 
 		maBase.fermer();
+		return true;
 	}
 	
-	public void deleteAnim(String nom_anim){
+	public boolean deleteAnim(String nom_anim){
 		maBase.ouvrir();
 		try {
 			String sql = 
@@ -133,12 +136,16 @@ Base maBase = new Base();
 		}
 		catch (Exception e) {
 			System.out.println("Erreur AnimationTable.deleteAnim "+e.getMessage());
+			maBase.fermer();
+			return false;
 		}
 
 		maBase.fermer();
+		return true;
 	}
 	
-	public void updateAnim(String nom_anim, ArrayList<String> champ, ArrayList<String> val){
+	
+	public boolean updateAnim(String nom_anim, ArrayList<String> champ, ArrayList<String> val){
 		maBase.ouvrir();
 		int i;
 		try {
@@ -163,9 +170,12 @@ Base maBase = new Base();
 		}
 		catch (Exception e) {
 			System.out.println("Erreur AnimationTable.updateAnim "+e.getMessage());
+			maBase.fermer();
+			return false;
 		}
 
 		maBase.fermer();
+		return true;
 	}
 	
 	
