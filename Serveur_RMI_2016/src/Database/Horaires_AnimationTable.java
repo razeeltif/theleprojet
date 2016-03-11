@@ -24,7 +24,7 @@ public class Horaires_AnimationTable {
 				Horaires horTmp = new Horaires();
 				horTmp.setNom_anim(rs.getString("Nom_Animation"));
 				horTmp.setHeure_Debut(rs.getInt("Heure_Debut"));
-				horTmp.setHeure_Debut(rs.getInt("Nb_Places_Restantes"));
+				horTmp.setNb_Places_dispo(rs.getInt("Nb_Places_Restantes"));
 				res.add(horTmp);
 			}
 			try {rs.close();}catch(Exception e){}
