@@ -165,7 +165,7 @@ System.out.println(listeHeure.getNb());
 				Iterator<Groupe> itr = groupe.iterator();
 			      while(itr.hasNext()) {
 			        Groupe element = itr.next();
-			        if(validation.getValeurs().get("groupe") != null){
+			        if(validation.getValeurs().get("groupe").equals(element.getNom_groupe())){
 			        	out.print("<option selected>");
 			        }else{
 						out.print("<option>");
