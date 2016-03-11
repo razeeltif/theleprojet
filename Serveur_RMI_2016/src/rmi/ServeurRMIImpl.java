@@ -152,6 +152,13 @@ public class ServeurRMIImpl implements ServeurRMI{
 		
 	}
 	
+
+	@Override
+	public ArrayList<Reservation> getResa(int code_Billet) throws RemoteException{
+		ReservationTable tabResa = new ReservationTable();
+		return tabResa.getResa(code_Billet);
+	}
+	
 	
 	@Override
 	public boolean addResa(int code_Billet, String nom_Anim, String time) throws RemoteException {

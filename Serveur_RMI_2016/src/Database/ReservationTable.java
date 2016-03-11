@@ -1,10 +1,41 @@
 package Database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import Bean.Reservation;
  
 public class ReservationTable {
 
 	Base maBase = new Base();
+	
+	public ArrayList<Reservation> getResa(int code_Billet){
+		maBase.ouvrir();
+		ArrayList<Reservation> listResa = new ArrayList<Reservation>();
+		try {
+			String sql = 
+			 "SELECT * FROM `Reservation` WHERE `Code_Billet` LIKE ?)";
+			PreparedStatement ps = maBase.co.prepareStatement(sql);
+			ps.setInt(1, code_Billet); // num param
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Reservation resaTmp = new Reservation();
+				resaTmp.setCode_Billet(rs.getInt("Code_Billet"));
+				resaTmp.setNom_Animation(rs.getString("Nom_Animation"));
+				resaTmp.setTime(rs.getString("Heure_Debut"));
+				listResa.add(resaTmp);
+			}
+			try {rs.close();}catch(Exception e){}
+			try {ps.close();}catch(Exception e){}
+		}
+		catch (Exception e) {
+			System.out.println("Erreur ReservationTable.addResa "+e.getMessage());
+		}
+
+		maBase.fermer();
+		return listResa;
+	}
 	
 	public int addResa(int code_Billet, String nom_Anim, String time){
 		maBase.ouvrir();
