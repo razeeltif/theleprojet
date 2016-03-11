@@ -17,3 +17,7 @@ table{
 li{
 	position: relative;
 }
+
+ul{
+    list-style-type: none;
+}
