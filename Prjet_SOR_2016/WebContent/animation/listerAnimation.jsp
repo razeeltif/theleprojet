@@ -19,7 +19,15 @@
 	
 <%
 
-
+ArrayList <Animation>listeAnim = manager.getServRMI().getAllAnim();
+for(Animation anim : listeAnim){
+	ArrayList<Horaires> listeHoraire = manager.getServRMI().getHoraires(anim.getNom_animation());
+	for(Horaires horaire : listeHoraire){
+		if(request.getParameter("submitResa"+anim.getNom_animation()+horaire.getHeure_Debut()) != null){
+			manager.getServRMI().addResa(manager.getNum(), anim.getNom_animation(), Integer.toString(horaire.getHeure_Debut()));
+		}
+	}
+}
 
 
 
@@ -27,13 +35,7 @@
 
 %>
 	
-	
-	
-	
-	
-	
-      
-    
+	  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="../commun_page_menu/menu.jsp" />
 
@@ -75,7 +77,7 @@ for(Groupe elemGroupe : lstGroupe){
 					if (manager.isIdentifie() && !manager.isAdmin()) {
 						if (h.get(i).getNb_Places_dispo() > 0) {
 							//ajout d'un bouton pour reserver
-							out.println("<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa\" /></td>");
+							out.println("<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa"+l.getNom_animation()+h.get(i).getHeure_Debut()+"\" /></td>");
 						} else {
 							//ajout message plus de place
 							out.println("<td class=\"end\">plus de places !</td>");

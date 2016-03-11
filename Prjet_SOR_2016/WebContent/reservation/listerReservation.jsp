@@ -1,7 +1,14 @@
 <%@page import="Bean.Animation"%>
+<%@page import="Bean.Reservation"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<jsp:useBean id="manager" 
+	class="manager.Manager"
+	scope="session" />    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,12 +21,12 @@
 <h1>Vos reservations</h1>
 <%
 	
-/*	ArrayList <Animation>lst = manager.listerAnimation("%");
+	ArrayList <Reservation>lst = manager.getServRMI().getResa(manager.getNum());
 	out.println("<ul>");
-	for (Animation l : lst) {
-		out.println("<li>"+l.getTitre()+"</li>");
+	for (Reservation l : lst) {
+		out.println("<li>"+l.getNom_Animation()+"</li>");
 	}
-	out.println("</ul>");*/
+	out.println("</ul>");
 	
 	
 	
