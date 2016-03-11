@@ -19,15 +19,18 @@
 	
 	
 <%
+if(request.getParameter("submitModif") != null){
+
+	response.sendRedirect("modifAnimation.jsp?modif=" + request.getParameter("nom"));
+	
+	
+	//manager.getServRMI().addResa(manager.getNum(), anim.getNom_animation(), Integer.toString(horaire.getHeure_Debut()));
+}
+
+
 
 if(request.getParameter("submitResa") != null){
-	System.out.println("click");
-
-	System.out.println(request.getParameter("horaire"));
-	System.out.println(request.getParameter("nom"));
-	manager.getServRMI().addResa(manager.getNum(), request.getParameter("nom"), request.getParameter("horaire"));
-	
-	
+	manager.getServRMI().addResa(manager.getNum(), request.getParameter("nom"), request.getParameter("horaire"));	
 	//manager.getServRMI().addResa(manager.getNum(), anim.getNom_animation(), Integer.toString(horaire.getHeure_Debut()));
 }
 

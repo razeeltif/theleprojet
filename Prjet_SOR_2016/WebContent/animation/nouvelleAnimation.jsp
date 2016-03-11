@@ -84,9 +84,11 @@ if (request.getParameter("submit") != null) {
 		if(validation.existePas(Groupe.class,"nom", res)){
 			//ajout dans la BDD
 			manager.getServRMI().addAnim(nom, description, photo, duree, nb_places, nom_groupe);
+			System.out.println("nombre : " + listeHeure.getNb());
 			for(int i = 0; i < listeHeure.getNb(); i++){
-				int h = Integer.parseInt(request.getParameter("heure"+1));
-				manager.getServRMI().createHorairesAnimation(nom_groupe, h);
+				int h = Integer.parseInt(request.getParameter("heure"+i));
+				System.out.println("n°" + h);
+				manager.getServRMI().createHorairesAnimation(nom, h);
 			}
 			validation.setMessValid("L'animation a été créée");
 			validation.setValeurs(new Hashtable<String,String>());
@@ -165,7 +167,7 @@ System.out.println(listeHeure.getNb());
 				Iterator<Groupe> itr = groupe.iterator();
 			      while(itr.hasNext()) {
 			        Groupe element = itr.next();
-			        if(validation.getValeurs().get("groupe").equals(element.getNom_groupe())){
+			        if(validation.getValeurs().get("groupe") != null && validation.getValeurs().get("groupe").equals(element.getNom_groupe())){
 			        	out.print("<option selected>");
 			        }else{
 						out.print("<option>");
@@ -179,9 +181,6 @@ System.out.println(listeHeure.getNb());
 			</td>
 			<td>${validation.erreurs['groupe']}</td>
 		</tr>
-		
-
-		
 		<tr>
 			<td>heure : </td>
 			<table>
