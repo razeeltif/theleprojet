@@ -57,7 +57,7 @@ for(Animation anim : listeAnim2){
 <%
 	ArrayList <Groupe>lstGroupe = manager.getServRMI().getAllGroupe();
 
-out.println("<form>");
+
 out.println("<ul>");
 for(Groupe elemGroupe : lstGroupe){	
 	
@@ -75,8 +75,8 @@ for(Groupe elemGroupe : lstGroupe){
 		out.println("<td>"+l.getNb_Places()+"</td>");
 				if (manager.isIdentifie() && manager.isAdmin()) {
 					//modification de l'animation
-					out.println("<td class=\"end\"><input type=\"submit\" value=\"Modifier...\" name=\"submitModif"+l.getNom_animation()+"\" /></td>");
-					out.println("<td class=\"end\"><input type=\"submit\" value=\"Supprimer\" name=\"submitSuppr"+l.getNom_animation()+"\" /></td>");
+					out.println("<td class=\"end\"><form method=\"post\" action=\"nouvelleAnimation.jsp?modif="+l.getNom_animation()+"\"> <input type=\"submit\"  value=\"Modifier...\" name=\"submitModif\" /></form></td>");
+					out.println("<td class=\"end\"><form><input type=\"submit\" value=\"Supprimer\" name=\"submitSuppr"+l.getNom_animation()+"\" /></form></td>");
 				}
 
 				ArrayList<Horaires> h = manager.getServRMI().getHoraires(l.getNom_animation());
@@ -100,7 +100,7 @@ for(Groupe elemGroupe : lstGroupe){
 
 	}
 	out.println("</ul>");
-	out.println("</form>");
+
 %>
 
 <a href="../animation/generatePDF.jsp" title="génération PDF">généner le PDF</a>

@@ -23,6 +23,14 @@
    
 <%
 
+if(request.getParameter("modif") != null){
+	
+	
+	
+	
+	
+}
+
 if (request.getParameter("submit") != null) {
 	
 	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
