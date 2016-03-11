@@ -15,7 +15,7 @@ public class ReservationTable {
 		ArrayList<Reservation> listResa = new ArrayList<Reservation>();
 		try {
 			String sql = 
-			 "SELECT * FROM `Reservation` WHERE `Code_Billet` LIKE ?)";
+			 "SELECT * FROM `Reservation` WHERE `Code_Billet` LIKE ?";
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, code_Billet); // num param
 			ResultSet rs = ps.executeQuery();
@@ -30,7 +30,7 @@ public class ReservationTable {
 			try {ps.close();}catch(Exception e){}
 		}
 		catch (Exception e) {
-			System.out.println("Erreur ReservationTable.addResa "+e.getMessage());
+			System.out.println("Erreur ReservationTable.getResa "+e.getMessage());
 		}
 
 		maBase.fermer();
