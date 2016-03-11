@@ -75,7 +75,7 @@ for(Groupe elemGroupe : lstGroupe){
 		out.println("<td>"+l.getNb_Places()+"</td>");
 				if (manager.isIdentifie() && manager.isAdmin()) {
 					//modification de l'animation
-					out.println("<td class=\"end\"><form method=\"post\" action=\"nouvelleAnimation.jsp?modif="+l.getNom_animation()+"\"> <input type=\"submit\"  value=\"Modifier...\" name=\"submitModif\" /></form></td>");
+					out.println("<td class=\"end\"><form method=\"post\" action=\"modifAnimation.jsp?modif="+l.getNom_animation()+"\"> <input type=\"submit\"  value=\"Modifier...\" name=\"submitModif\" /></form></td>");
 					out.println("<td class=\"end\"><form><input type=\"submit\" value=\"Supprimer\" name=\"submitSuppr"+l.getNom_animation()+"\" /></form></td>");
 				}
 

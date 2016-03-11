@@ -3,6 +3,7 @@
 <%@page import="java.util.Hashtable" %>
 <%@page import="Bean.Groupe" %>
 <%@page import="Bean.Animation" %>
+<%@page import="Bean.Horaires" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 
@@ -24,11 +25,29 @@
 <%
 
 if(request.getParameter("modif") != null){
+	String nom = request.getParameter("modif");
+	Animation anim = manager.getServRMI().getAnim(nom);
 	
+	String description = anim.getDescription();
+	int duree = anim.getDuree();
+	int nb_places = anim.getNb_Places();
+	String photo = anim.getLien_photo();
+	String groupe = anim.getGroupe_name();
 	
+	ArrayList<Horaires> listeHoraires = manager.getServRMI().getHoraires(nom);
+	listeHeure.setNb(listeHoraires.size());
+
+	for(int i = 0; i < listeHoraires.size(); i++){
+		validation.getValeurs().put("heure"+i, Integer.toString(listeHoraires.get(i).getHeure_Debut()));
+	}
 	
-	
-	
+	validation.getValeurs().put("nom", nom);
+	validation.getValeurs().put("description", description);
+	validation.getValeurs().put("duree", Integer.toString(duree));
+	validation.getValeurs().put("nb_places", Integer.toString(nb_places));
+	validation.getValeurs().put("photo", photo);
+	validation.getValeurs().put("groupe", groupe);
+
 }
 
 if (request.getParameter("submit") != null) {
@@ -107,7 +126,7 @@ System.out.println(listeHeure.getNb());
 
 <h1>Ajouter une animation</h1>
 
-<form> <!-- action="UploadServlet" method="post" enctype="multipart/form-data" -->
+<form<%if(request.getParameter("modif") != null) out.println("action=\"nouvelleAnimation.jsp?modif="+validation.getValeurs().get("nom")+"\""); %>> <!-- action="UploadServlet" method="post" enctype="multipart/form-data" -->
 	<table>
 		<tr>
 			<td>Nom : </td>
@@ -146,9 +165,13 @@ System.out.println(listeHeure.getNb());
 				Iterator<Groupe> itr = groupe.iterator();
 			      while(itr.hasNext()) {
 			        Groupe element = itr.next();
-					out.println("<option>");
+			        if(validation.getValeurs().get("groupe") != null){
+			        	out.print("<option selected>");
+			        }else{
+						out.print("<option>");
+			        }
 					out.println(element.getNom_groupe());
-					out.println("</option>");
+					//out.println("</option>");
 			      }
 				%>
 
