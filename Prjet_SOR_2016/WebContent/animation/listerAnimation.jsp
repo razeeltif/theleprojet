@@ -66,12 +66,15 @@ for(Groupe elemGroupe : lstGroupe){
 	}
 	out.println("</table>");	
 	out.println("</li>");
+	
 	}
 	
 }
 out.println("</ul>");
 
 %>
+
+<a href="../animation/listerAnimation.jsp" title="génération PDF">généner le PDF</a>
 
 
 </body>

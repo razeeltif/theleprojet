@@ -24,9 +24,12 @@
 <%
 
 if (request.getParameter("submit") != null) {
+	
+	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
+	validation.estEntier(Animation.class, "nb_places", request.getParameter("nb_places"));
+	
 	validation.nonVide(Animation.class, "nom", request.getParameter("nom"));
 	validation.nonVide(Animation.class, "description", request.getParameter("description"));
-	validation.nonVide(Animation.class, "heure", request.getParameter("heure"));
 	validation.nonVide(Animation.class, "duree", request.getParameter("duree"));
 	validation.nonVide(Animation.class, "nb_places", request.getParameter("nb_places"));
 	validation.nonVide(Animation.class, "photo", request.getParameter("photo"));
@@ -36,15 +39,10 @@ if (request.getParameter("submit") != null) {
 		validation.nonVide(Animation.class, "heure"+i, request.getParameter("heure"+i));
 	}
 	
-	validation.estEntier(Animation.class, "heure", request.getParameter("heure"));
-	validation.estEntier(Animation.class, "duree", request.getParameter("duree"));
-	validation.estEntier(Animation.class, "nb_places", request.getParameter("nb_places"));
-
 	if (validation.isValide()) {
 		
 		String nom = validation.getValeurs().get("nom");
 		String description = validation.getValeurs().get("description");
-		int heure = Integer.parseInt(request.getParameter("heure"));
 		int duree = Integer.parseInt(request.getParameter("duree"));
 		int nb_places = Integer.parseInt(request.getParameter("nb_places"));
 		String photo = validation.getValeurs().get("photo");
@@ -59,6 +57,10 @@ if (request.getParameter("submit") != null) {
 		if(validation.existePas(Groupe.class,"nom", res)){
 			//ajout dans la BDD
 			manager.getServRMI().addAnim(nom, description, photo, duree, nb_places, nom_groupe);
+			for(int i = 0; i < listeHeure.getNb(); i++){
+				int h = Integer.parseInt(request.getParameter("heure"+1));
+				manager.getServRMI().createHorairesAnimation(nom_groupe, h);
+			}
 			validation.setMessValid("L'animation a été créée");
 			validation.setValeurs(new Hashtable<String,String>());
 			validation.setErreurs(new Hashtable<String,String>());
@@ -81,10 +83,6 @@ if (request.getParameter("-") != null) {
 }
 
 System.out.println(listeHeure.getNb());
-
-
-
-
 
 %>  
     
@@ -116,13 +114,6 @@ System.out.println(listeHeure.getNb());
 						value= "${validation.valeurs['description']}"
 						name="description"/></td>
 			<td>${validation.erreurs['description']}</td>
-		</tr>
-		<tr>
-			<td>heure : </td>
-			<td><input type="text" 
-						value= "${validation.valeurs['heure']}"
-						name="heure"/></td>
-			<td>${validation.erreurs['heure']}</td>
 		</tr>
 		<tr>
 			<td>durée : </td>
@@ -158,17 +149,7 @@ System.out.println(listeHeure.getNb());
 			<td>${validation.erreurs['groupe']}</td>
 		</tr>
 		
-		<tr>
-			<td>image :</td>
-			<td><input type="file" value="${validation.valeurs['photo']}" size="35" name="photo"/></td>
-			<td>${validation.erreurs['photo']}</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><input type="submit"
-				value="Valider"
-				name="submit" /></td>
-		</tr>
+
 		
 		<tr>
 			<td>heure : </td>
@@ -178,7 +159,11 @@ System.out.println(listeHeure.getNb());
 			<%
 			for(int i = 0; i < listeHeure.getNb(); i++){
 				//champs texte pour heure
-				out.println("<tr><td><input type=\"text\" value= \""+validation.getValeurs().get("heure"+i)+"\" name=\"heure"+i+"\"/></td><td>");
+				out.println("<tr><td><input type=\"text\" value= \"");
+				if(validation.getValeurs().get("heure"+i) != null){
+					out.println(validation.getValeurs().get("heure"+i));
+				}
+				out.println("\" name=\"heure"+i+"\"/></td><td>");
 				if(validation.getErreurs().get("heure"+i) != null){
 					out.println(validation.getErreurs().get("heure"+i));
 				}
@@ -192,7 +177,17 @@ System.out.println(listeHeure.getNb());
 			<td><input type="submit" value="+" name="+" /></td>
 			<td><input type="submit" value="-" name="-" /></td>
 		</tr>
-		
+		<tr>
+			<td>image :</td>
+			<td><input type="file" value="${validation.valeurs['photo']}" size="35" name="photo"/></td>
+			<td>${validation.erreurs['photo']}</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit"
+				value="Valider"
+				name="submit" /></td>
+		</tr>
 	</table>
 </form>
 
