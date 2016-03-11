@@ -3,6 +3,7 @@
 <%@page import="Bean.Horaires"%>
 <%@page import="validation.Identification"%>
 <%@page import="manager.Manager"%>
+<%@page import="java.util.Iterator" %>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,6 +19,18 @@
 	
 	
 <%
+
+if(request.getParameter("submitResa") != null){
+	System.out.println("click");
+
+	System.out.println(request.getParameter("horaire"));
+	System.out.println(request.getParameter("nom"));
+	manager.getServRMI().addResa(manager.getNum(), request.getParameter("nom"), request.getParameter("horaire"));
+	
+	
+	//manager.getServRMI().addResa(manager.getNum(), anim.getNom_animation(), Integer.toString(horaire.getHeure_Debut()));
+}
+
 
 ArrayList <Animation>listeAnim = manager.getServRMI().getAllAnim();
 for(Animation anim : listeAnim){
@@ -55,7 +68,9 @@ for(Animation anim : listeAnim2){
 
 <h1>Liste des animations</h1>
 <%
-	ArrayList <Groupe>lstGroupe = manager.getServRMI().getAllGroupe();
+	
+
+ArrayList <Groupe>lstGroupe = manager.getServRMI().getAllGroupe();
 
 
 out.println("<ul>");
@@ -63,44 +78,64 @@ for(Groupe elemGroupe : lstGroupe){
 	
 	ArrayList <Animation>lst = manager.getServRMI().getAnimByGroupe(elemGroupe.getNom_groupe());
 	if(lst.size() > 0){
-	out.println("<li>");
-	out.println("<table>");
-	out.println("<caption>" + elemGroupe.getNom_groupe() + "</caption");
-	out.println("<thead><tr><th>Nom</th><th>Description</th><th>Duree</th><th>Nombre de places</th></tr></thead>");
-	for (Animation l : lst) {
-		out.println("<tr>");
-		out.println("<td>"+l.getNom_animation()+"</td>");
-		out.println("<td>"+l.getDescription()+"</td>");
-		out.println("<td>"+l.getDuree()+"</td>");
-		out.println("<td>"+l.getNb_Places()+"</td>");
+		out.println("<li>");
+		out.println("<table>");
+		out.println("<caption>" + elemGroupe.getNom_groupe() + "</caption");
+		out.println("<thead><tr><th>Nom</th><th>Description</th><th>Duree</th><th>Nombre de places</th></tr></thead>");
+			int i = 0;
+			for (Animation l : lst) {
+				out.println("<form method=\"get\">");
+				out.println("<tr>");
+				out.println("<input type=\"hidden\" name=\"nom\" value=\"" + l.getNom_animation() +"\"/>");
+				out.println("<td id=\"nom\" >" + l.getNom_animation() + "</td>");
+				out.println("<td>" + l.getDescription() + "</td>");
+				out.println("<td>" + l.getDuree() + "</td>");
+				out.println("<td>" + l.getNb_Places() + "</td>");
 				if (manager.isIdentifie() && manager.isAdmin()) {
 					//modification de l'animation
-					out.println("<td class=\"end\"><form method=\"post\" action=\"modifAnimation.jsp?modif="+l.getNom_animation()+"\"> <input type=\"submit\"  value=\"Modifier...\" name=\"submitModif\" /></form></td>");
-					out.println("<td class=\"end\"><form><input type=\"submit\" value=\"Supprimer\" name=\"submitSuppr"+l.getNom_animation()+"\" /></form></td>");
+					out.println("<td class=\"end\"><form method=\"post\" action=\"modifAnimation.jsp?modif="
+							+ l.getNom_animation()
+							+ "\"> <input type=\"submit\"  value=\"Modifier...\" name=\"submitModif\" /></form></td>");
+					out.println(
+							"<td class=\"end\"><form><input type=\"submit\" value=\"Supprimer\" name=\"submitSuppr"
+									+ l.getNom_animation() + "\" /></form></td>");
 				}
+				out.println("<td>");
+				out.println("<select name=\"horaire\" >");
 
 				ArrayList<Horaires> h = manager.getServRMI().getHoraires(l.getNom_animation());
-				for (int i = 0; i < h.size(); i++) {
-					out.println("<td>horaire : " + h.get(i).getHeure_Debut() + "</td>");
-					if (manager.isIdentifie() && !manager.isAdmin()) {
-						if (h.get(i).getNb_Places_dispo() > 0) {
-							//ajout d'un bouton pour reserver
-							out.println("<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa"+l.getNom_animation()+h.get(i).getHeure_Debut()+"\" /></td>");
-						} else {
-							//ajout message plus de place
-							out.println("<td class=\"end\">plus de places !</td>");
-						}
-					}
+				Iterator<Horaires> itr = h.iterator();
+				while (itr.hasNext()) {
+					Horaires element = itr.next();
+					out.print("<option>");
+					out.println(element.getHeure_Debut());
+					//out.println("</option>");
 				}
+				if (manager.isIdentifie() && !manager.isAdmin()) {
+					//if (element.getNb_Places_dispo() > 0) {
+					//ajout d'un bouton pour reserver
+					out.println(
+							"<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa\"/></td>");
+					//} else {
+					//ajout message plus de place
+					//	out.println("<td class=\"end\">plus de places !</td>");
+					//	}
+				}
+				out.println("</select>");
+				out.println("</td>");
 				out.println("</tr>");
+				i++;
+				out.println("</form>");
 			}
 			out.println("</table>");
 			out.println("</li>");
+
 		}
 
 	}
 	out.println("</ul>");
 
+	out.println("</form>");
 %>
 
 <a href="../animation/generatePDF.jsp" title="génération PDF">généner le PDF</a>
