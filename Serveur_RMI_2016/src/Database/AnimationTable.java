@@ -164,7 +164,6 @@ Base maBase = new Base();
 				ps.setString(i+1, val.get(i)); // num param
 			}
 			ps.setString(i+1, nom_anim);
-			System.out.println(ps.toString());
 			ps.executeUpdate();
 			
 			try {ps.close();}catch(Exception e){}

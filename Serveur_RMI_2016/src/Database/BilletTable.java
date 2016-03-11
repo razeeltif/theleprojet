@@ -17,8 +17,7 @@ public class BilletTable {
 			PreparedStatement ps = maBase.co.prepareStatement(sql);
 			ps.setInt(1, codeBillet); // num param
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			if( rs.getInt("Code") != 0){
+			if(rs.first()){
 				valideCode = true;
 			}
 			try {rs.close();}catch(Exception e){}
