@@ -1,5 +1,6 @@
 <%@page import="Bean.Animation"%>
 <%@page import="Bean.Groupe"%>
+<%@page import="Bean.Horaires"%>
 <%@page import="validation.Identification"%>
 <%@page import="manager.Manager"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,8 +33,7 @@
 
 <h1>Liste des animations</h1>
 <%
-
-ArrayList <Groupe>lstGroupe = manager.getServRMI().getAllGroupe();
+	ArrayList <Groupe>lstGroupe = manager.getServRMI().getAllGroupe();
 
 out.println("<ul>");
 for(Groupe elemGroupe : lstGroupe){	
@@ -50,31 +50,35 @@ for(Groupe elemGroupe : lstGroupe){
 		out.println("<td>"+l.getDescription()+"</td>");
 		out.println("<td>"+l.getDuree()+"</td>");
 		out.println("<td>"+l.getNb_Places()+"</td>");
-		if(manager.isIdentifie() && !manager.isAdmin()){
-			if(/*l.getNb_places_Restantes()*/1 > 0){
-				//ajout d'un bouton pour reserver
-				out.println("<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa\" /></td>");
-			}else{
-				//ajout message plus de place
-				out.println("<td class=\"end\">plus de places !</td>");
-			}
-		}else if(manager.isIdentifie() && manager.isAdmin()){
-			//modification de l'animation
-			out.println("<td class=\"end\"><input type=\"submit\" value=\"Modifier...\" name=\"submitModif\" /></td>");
-		}
-		out.println("</tr>");
-	}
-	out.println("</table>");	
-	out.println("</li>");
-	
-	}
-	
-}
-out.println("</ul>");
+				if (manager.isIdentifie() && manager.isAdmin()) {
+					//modification de l'animation
+					out.println("<td class=\"end\"><input type=\"submit\" value=\"Modifier...\" name=\"submitModif\" /></td>");
+				}
 
+				ArrayList<Horaires> h = manager.getServRMI().getHoraires(l.getNom_animation());
+				for (int i = 0; i < h.size(); i++) {
+					out.println("<td>horaire : " + h.get(i).getHeure_Debut() + "</td>");
+					if (manager.isIdentifie() && !manager.isAdmin()) {
+						if (h.get(i).getNb_Places_dispo() > 0) {
+							//ajout d'un bouton pour reserver
+							out.println("<td class=\"end\"><input type=\"submit\" value=\"Reserver votre place !\" name=\"submitResa\" /></td>");
+						} else {
+							//ajout message plus de place
+							out.println("<td class=\"end\">plus de places !</td>");
+						}
+					}
+				}
+				out.println("</tr>");
+			}
+			out.println("</table>");
+			out.println("</li>");
+		}
+
+	}
+	out.println("</ul>");
 %>
 
-<a href="../animation/listerAnimation.jsp" title="génération PDF">généner le PDF</a>
+<a href="../animation/genaratePDF.jsp" title="génération PDF">généner le PDF</a>
 
 
 </body>
