@@ -15,6 +15,23 @@
 <jsp:useBean id="validation" 
 	class="validation.Validation"
 	scope="request" />    
+	
+	
+<%
+
+
+
+
+
+
+
+%>
+	
+	
+	
+	
+	
+	
       
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,9 +44,6 @@
 <title>Brest 2016</title>
 </head>
 <body>
-
-
-
 
 <h1>Liste des animations</h1>
 <%
@@ -78,7 +92,7 @@ for(Groupe elemGroupe : lstGroupe){
 	out.println("</ul>");
 %>
 
-<a href="../animation/genaratePDF.jsp" title="génération PDF">généner le PDF</a>
+<a href="../animation/generatePDF.jsp" title="génération PDF">généner le PDF</a>
 
 
 </body>
