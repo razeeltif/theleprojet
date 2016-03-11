@@ -30,7 +30,9 @@ if (request.getParameter("submit") != null) {
 	validation.nonVide(Animation.class, "duree", request.getParameter("duree"));
 	validation.nonVide(Animation.class, "nb_places", request.getParameter("nb_places"));
 	validation.nonVide(Animation.class, "photo", request.getParameter("photo"));
+	
 	for(int i = 0; i < listeHeure.getNb(); i++){
+		validation.estEntier(Animation.class, "heure"+i, request.getParameter("heure"+i));
 		validation.nonVide(Animation.class, "heure"+i, request.getParameter("heure"+i));
 	}
 	
@@ -54,7 +56,6 @@ if (request.getParameter("submit") != null) {
 		if(anim != null){
 			res = anim.getNom_animation();
 		}
-		System.out.println(res);
 		if(validation.existePas(Groupe.class,"nom", res)){
 			//ajout dans la BDD
 			manager.getServRMI().addAnim(nom, description, photo, duree, nb_places, nom_groupe);
@@ -66,7 +67,8 @@ if (request.getParameter("submit") != null) {
 			//return;	
 		}			
 	}
-	System.out.println(validation.getValeurs());
+	System.out.println("vals : "+validation.getValeurs());
+	System.out.println("errs : "+validation.getErreurs());
 }
 
 if (request.getParameter("+") != null) {
@@ -171,19 +173,18 @@ System.out.println(listeHeure.getNb());
 		<tr>
 			<td>heure : </td>
 			<table>
-				<tr>
-					<td>
-					<c:forEach begin="0" end="${listHeure.nb}" >
-		  				 <c:out value="${name}"/><p>
-					</c:forEach>
-					</td>
-				</tr>
 				
-			<%/*
+				
+			<%
 			for(int i = 0; i < listeHeure.getNb(); i++){
 				//champs texte pour heure
-				out.println("<tr><td><input type=\"text\" value= \"\" name=\"heure"+i+"\"/></td><td>"+validation.valeurs[]  +"</td></tr>");
-			}*/
+				out.println("<tr><td><input type=\"text\" value= \""+validation.getValeurs().get("heure"+i)+"\" name=\"heure"+i+"\"/></td><td>");
+				if(validation.getErreurs().get("heure"+i) != null){
+					out.println(validation.getErreurs().get("heure"+i));
+				}
+				out.println("</td></tr>");
+			}
+			
 			%>
 			</table>
 			
